@@ -1,52 +1,52 @@
 {
   "sections": [
     {
-      "label": "About",
-      "shortLabel": "About",
+      "label": "À propos",
+      "shortLabel": "À propos",
       "href": "#about",
-      "desc": "Background, experience, and approach"
+      "desc": "Parcours, profil et approche technique"
     },
     {
       "label": "Expertise",
       "shortLabel": "Expertise",
       "href": "#expertise",
-      "desc": "What I focus on and how I work"
+      "desc": "Domaines d’intervention et méthodes de travail"
     },
     {
-      "label": "Skills",
-      "shortLabel": "Skills",
+      "label": "Compétences",
+      "shortLabel": "Compétences",
       "href": "#skills",
-      "desc": "Tools and technologies I use"
+      "desc": "Outils, technologies et savoir-faire techniques"
     },
     {
       "label": "Portfolio",
       "shortLabel": "Portfolio",
       "href": "#portfolio",
-      "desc": "Client and commercial work"
+      "desc": "Vitrine technique et réalisations détaillées"
     },
     {
-      "label": "Projects",
-      "shortLabel": "Projects",
+      "label": "Projets",
+      "shortLabel": "Projets",
       "href": "#projects",
-      "desc": "Personal projects and experiments"
+      "desc": "Projets personnels, prototypes et expérimentations"
     },
     {
       "label": "Certifications",
       "shortLabel": "Certs",
       "href": "#certifications",
-      "desc": "Training, courses, and credentials"
+      "desc": "Formations, certifications et apprentissages"
     },
     {
       "label": "Services",
       "shortLabel": "Services",
       "href": "#services",
-      "desc": "Sites and projects I run"
+      "desc": "Liens, profils et ressources associées"
     },
     {
       "label": "Contact",
       "shortLabel": "Contact",
       "href": "#contact",
-      "desc": "Start a project or just say hello"
+      "desc": "Échanger autour d’un projet ou d’une opportunité"
     }
   ]
 }
