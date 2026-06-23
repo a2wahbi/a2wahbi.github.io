@@ -17,14 +17,30 @@ const { footerAttribution } = siteData;
 <footer
   id="site-footer"
   style="position: relative; background: var(--footer-bg); border-top: 1px solid var(--footer-border);"
-  data-base={base}
-  data-gif-count={siteData.retroTvCount}
 >
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-14">
     <div class="footer-grid">
       <div class="footer-left">
         <div class="footer-square" id="footer-square">
-          <div class="footer-glitch" data-text={siteData.shortName}>{siteData.shortName}</div>
+          <div class="footer-scope" role="img" aria-label="Signal électronique animé">
+            <svg class="footer-scope-svg" viewBox="0 0 170 85" aria-hidden="true" focusable="false">
+              <path
+                class="scope-trace scope-trace-glow"
+                d="M8 44 H22 L27 31 L34 58 L41 44 H55 C62 44 62 27 70 27 C78 27 78 60 86 60 C94 60 94 44 102 44 H116 L121 35 L126 51 L132 44 H162"
+              />
+              <path
+                class="scope-trace scope-trace-main"
+                d="M8 44 H22 L27 31 L34 58 L41 44 H55 C62 44 62 27 70 27 C78 27 78 60 86 60 C94 60 94 44 102 44 H116 L121 35 L126 51 L132 44 H162"
+              />
+              <path
+                class="scope-noise"
+                d="M10 68 L15 65 L20 69 L26 66 L31 68 L37 64 L43 67 L50 66 L57 69 L64 65 L72 68 L80 66 L88 69 L96 65 L104 67 L112 66 L121 68 L130 65 L139 69 L148 66 L160 68"
+              />
+            </svg>
+            <span class="scope-sweep" aria-hidden="true"></span>
+            <span class="scope-dot scope-dot-a" aria-hidden="true"></span>
+            <span class="scope-dot scope-dot-b" aria-hidden="true"></span>
+          </div>
         </div>
 
         <div class="mt-4">
@@ -160,192 +176,253 @@ const { footerAttribution } = siteData;
   .footer-square {
     width: 170px;
     aspect-ratio: 2/1;
-    border: 3px solid rgba(255, 255, 255, 0.35);
-    background: var(--bg);
-    background-size: 130% auto;
-    background-position: top left;
-    filter: grayscale(55%) brightness(88%);
-    padding: 1.1em 1em 0.5em 1em;
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(148, 163, 184, 0.34);
+    border-radius: 0.35rem;
+    background:
+      radial-gradient(circle at 18% 24%, rgba(34, 211, 238, 0.16), transparent 28%),
+      radial-gradient(circle at 82% 76%, rgba(99, 102, 241, 0.2), transparent 30%),
+      linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 0.98));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 16px 40px rgba(15, 23, 42, 0.18);
+    padding: 0;
     cursor: default;
     transition:
-      filter 0.4s ease,
-      border-color 0.4s ease;
-  }
-  .footer-square:hover {
-    filter: grayscale(20%) brightness(100%);
-    border-color: rgba(99, 102, 241, 0.7);
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
   }
 
-  .footer-glitch {
-    color: white;
-    left: -1.925rem;
-    top: 1rem;
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 3px;
-    position: relative;
-    display: block;
-    line-height: 1;
-  }
-
-  /* content: attr(data-text) clones the visible text into two pseudo-elements.
-     clip-path is then animated frame-by-frame to create the scanline glitch effect. */
-  .footer-glitch:before,
-  .footer-glitch:after {
-    content: attr(data-text);
+  .footer-square::before {
+    content: '';
     position: absolute;
-    top: 0;
-    color: white;
-    background: var(--bg);
+    inset: 8px;
+    z-index: -1;
+    opacity: 0.65;
+    background:
+      linear-gradient(
+        90deg,
+        transparent 0 14%,
+        rgba(125, 211, 252, 0.38) 14% 14.8%,
+        transparent 14.8% 48%,
+        rgba(167, 243, 208, 0.3) 48% 48.8%,
+        transparent 48.8%
+      ),
+      linear-gradient(
+        0deg,
+        transparent 0 26%,
+        rgba(125, 211, 252, 0.28) 26% 26.8%,
+        transparent 26.8% 70%,
+        rgba(99, 102, 241, 0.34) 70% 70.8%,
+        transparent 70.8%
+      ),
+      repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.12) 0 1px, transparent 1px 16px),
+      repeating-linear-gradient(0deg, rgba(148, 163, 184, 0.1) 0 1px, transparent 1px 16px);
+  }
+
+  .footer-square::after {
+    content: '';
+    position: absolute;
+    inset: -65% -28%;
+    background: linear-gradient(
+      115deg,
+      transparent 36%,
+      rgba(125, 211, 252, 0.08) 44%,
+      rgba(125, 211, 252, 0.42) 50%,
+      rgba(167, 243, 208, 0.12) 56%,
+      transparent 64%
+    );
+    transform: translateX(-72%) rotate(10deg);
+    animation: footer-scan 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .footer-square:hover {
+    transform: translateY(-2px);
+    border-color: rgba(125, 211, 252, 0.65);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 18px 46px rgba(15, 23, 42, 0.24),
+      0 0 28px rgba(56, 189, 248, 0.18);
+  }
+
+  .footer-scope {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    clip-path: inset(0 0 100% 0);
-  }
-  .footer-glitch:before {
-    left: -2px;
-    text-shadow: 1px 0 blue;
-    animation: fg-noise-2 3s infinite linear alternate-reverse;
-    animation-play-state: paused;
-  }
-  .footer-glitch:after {
-    left: 2px;
-    text-shadow: -1px 0 red;
-    animation: fg-noise 2s infinite linear alternate-reverse;
-    animation-play-state: paused;
-  }
-  .footer-glitch:hover:before,
-  .footer-glitch:hover:after {
-    animation-play-state: running;
   }
 
-  @keyframes fg-noise {
-    0% {
-      clip-path: inset(40px 0 0px 0);
+  .footer-scope-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .scope-trace {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 255;
+    stroke-dashoffset: 255;
+    animation: footer-trace 3.8s ease-in-out infinite;
+  }
+
+  .scope-trace-glow {
+    stroke: rgba(125, 211, 252, 0.26);
+    stroke-width: 7;
+    filter: blur(2px);
+  }
+
+  .scope-trace-main {
+    stroke: #a7f3d0;
+    stroke-width: 2.2;
+    filter: drop-shadow(0 0 6px rgba(45, 212, 191, 0.85));
+  }
+
+  .scope-noise {
+    fill: none;
+    stroke: rgba(203, 213, 225, 0.52);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.58;
+    animation: footer-noise 1.2s steps(2, end) infinite;
+  }
+
+  .scope-sweep {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    left: 0;
+    background: linear-gradient(180deg, transparent, rgba(125, 211, 252, 0.82), transparent);
+    box-shadow: 0 0 16px rgba(125, 211, 252, 0.78);
+    animation: footer-sweep 3.8s ease-in-out infinite;
+  }
+
+  .scope-dot {
+    position: absolute;
+    width: 0.34rem;
+    height: 0.34rem;
+    border-radius: 999px;
+    background: #67e8f9;
+    box-shadow:
+      0 0 0 4px rgba(103, 232, 249, 0.08),
+      0 0 16px rgba(103, 232, 249, 0.72);
+    animation: footer-signal-pulse 2.4s ease-in-out infinite;
+  }
+
+  .scope-dot-a {
+    left: 14px;
+    top: 13px;
+  }
+
+  .scope-dot-b {
+    right: 14px;
+    bottom: 13px;
+    animation-delay: 1.2s;
+  }
+
+  .footer-square:hover .scope-trace-main {
+    stroke: #67e8f9;
+    filter: drop-shadow(0 0 9px rgba(103, 232, 249, 0.95));
+  }
+
+  @keyframes footer-scan {
+    0%,
+    18% {
+      opacity: 0;
+      transform: translateX(-72%) rotate(10deg);
     }
-    5% {
-      clip-path: inset(13px 0 92px 0);
+    34%,
+    62% {
+      opacity: 1;
     }
-    10% {
-      clip-path: inset(63px 0 3px 0);
-    }
-    15% {
-      clip-path: inset(35px 0 1px 0);
-    }
-    20% {
-      clip-path: inset(50px 0 63px 0);
-    }
-    25% {
-      clip-path: inset(93px 0 95px 0);
-    }
-    30% {
-      clip-path: inset(1px 0 71px 0);
-    }
-    35% {
-      clip-path: inset(71px 0 11px 0);
-    }
-    40% {
-      clip-path: inset(92px 0 67px 0);
-    }
-    45% {
-      clip-path: inset(1px 0 50px 0);
-    }
-    50% {
-      clip-path: inset(55px 0 37px 0);
-    }
-    55% {
-      clip-path: inset(62px 0 24px 0);
-    }
-    60% {
-      clip-path: inset(84px 0 94px 0);
-    }
-    65% {
-      clip-path: inset(20px 0 42px 0);
-    }
-    70% {
-      clip-path: inset(26px 0 56px 0);
-    }
-    75% {
-      clip-path: inset(57px 0 23px 0);
-    }
-    80% {
-      clip-path: inset(12px 0 81px 0);
-    }
-    85% {
-      clip-path: inset(60px 0 66px 0);
-    }
-    90% {
-      clip-path: inset(69px 0 63px 0);
-    }
-    95% {
-      clip-path: inset(69px 0 64px 0);
-    }
+    82%,
     100% {
-      clip-path: inset(91px 0 0px 0);
+      opacity: 0;
+      transform: translateX(72%) rotate(10deg);
     }
   }
 
-  @keyframes fg-noise-2 {
+  @keyframes footer-trace {
     0% {
-      clip-path: inset(54px 0 87px 0);
+      stroke-dashoffset: 255;
+      opacity: 0.5;
     }
-    5% {
-      clip-path: inset(52px 0 5px 0);
-    }
-    10% {
-      clip-path: inset(64px 0 69px 0);
-    }
-    15% {
-      clip-path: inset(58px 0 27px 0);
-    }
-    20% {
-      clip-path: inset(54px 0 60px 0);
-    }
-    25% {
-      clip-path: inset(22px 0 94px 0);
-    }
-    30% {
-      clip-path: inset(29px 0 21px 0);
-    }
-    35% {
-      clip-path: inset(1px 0 0px 0);
-    }
-    40% {
-      clip-path: inset(75px 0 95px 0);
-    }
-    45% {
-      clip-path: inset(27px 0 9px 0);
-    }
-    50% {
-      clip-path: inset(1px 0 94px 0);
-    }
-    55% {
-      clip-path: inset(77px 0 31px 0);
-    }
-    60% {
-      clip-path: inset(65px 0 76px 0);
-    }
-    65% {
-      clip-path: inset(75px 0 9px 0);
-    }
-    70% {
-      clip-path: inset(56px 0 36px 0);
-    }
-    75% {
-      clip-path: inset(43px 0 29px 0);
-    }
-    80% {
-      clip-path: inset(26px 0 28px 0);
-    }
-    85% {
-      clip-path: inset(94px 0 91px 0);
-    }
-    90% {
-      clip-path: inset(66px 0 63px 0);
-    }
-    95% {
-      clip-path: inset(86px 0 11px 0);
+    28%,
+    72% {
+      stroke-dashoffset: 0;
+      opacity: 1;
     }
     100% {
-      clip-path: inset(46px 0 8px 0);
+      stroke-dashoffset: -255;
+      opacity: 0.58;
+    }
+  }
+
+  @keyframes footer-sweep {
+    0%,
+    12% {
+      opacity: 0;
+      transform: translateX(0);
+    }
+    28%,
+    76% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(170px);
+    }
+  }
+
+  @keyframes footer-noise {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.42;
+    }
+    50% {
+      transform: translateY(-2px);
+      opacity: 0.72;
+    }
+  }
+
+  @keyframes footer-signal-pulse {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: translateY(-50%) scale(0.72);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-square,
+    .scope-trace-main {
+      transition: none;
+    }
+    .footer-square::after,
+    .scope-trace,
+    .scope-noise,
+    .scope-sweep,
+    .scope-dot {
+      animation: none;
+    }
+    .footer-square:hover {
+      transform: none;
     }
   }
 
@@ -430,21 +507,3 @@ const { footerAttribution } = siteData;
     transform: translateY(-2px);
   }
 </style>
-
-<script>
-  // base and gifCount are read from data attributes rather than hardcoded so this script
-  // works correctly regardless of the site's BASE_PATH deployment sub-directory.
-  const footer = document.getElementById('site-footer') as HTMLElement | null;
-  const base = footer?.dataset.base ?? '/';
-  const count = parseInt(footer?.dataset.gifCount ?? '21', 10);
-  const gifs = Array.from(
-    { length: count },
-    (_, i) => `${base}images/retro-tv/bgtv_(${i + 1}).gif`
-  );
-  // Pick a different retro TV gif on each page load.
-  const pick = gifs[Math.floor(Math.random() * gifs.length)];
-  const sq = document.getElementById('footer-square') as HTMLElement | null;
-  if (sq) {
-    sq.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('${pick}')`;
-  }
-</script>
