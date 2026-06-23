@@ -175,6 +175,9 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+    display: inline-block;
+    line-height: 1.16;
+    padding-bottom: 0.08em;
   }
 
   [data-theme="light"] .section-title {
