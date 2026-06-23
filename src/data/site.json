@@ -1,16 +1,16 @@
 {
-  "title": "Your Name Here | Creative Portfolio",
-  "description": "Portfolio of a designer, developer, and creator. Browse work spanning web, visual design, 3D, video, and more — then reach out.",
-  "ogSiteName": "Portfolio",
-  "shortName": "FOLIO",
-  "tagline": "Designing experiences · Building products · Telling stories",
+  "title": "Ahmed Amine WAHBI | Électronique & Systèmes Embarqués",
+  "description": "Portfolio d’Ahmed Amine WAHBI, ingénieur en électronique et systèmes embarqués. Projets en robotique, électronique, firmware et intégration système.",
+  "ogSiteName": "Portfolio Ahmed Amine WAHBI",
+  "shortName": "AMINE",
+  "tagline": "Électronique embarquée · Robotique · Intégration système",
   "themeStorageKey": "portfolio-theme",
-  "web3formsKey": "YOUR_WEB3FORMS_KEY_HERE",
+  "web3formsKey": "",
   "footerAttribution": {
-    "builder": "Built with this open-source template",
-    "builderUrl": "https://github.com/your-github-handle",
-    "host": "Hosted on your platform of choice",
-    "hostUrl": "https://yourdomain.com"
+    "builder": "Astro",
+    "builderUrl": "https://astro.build",
+    "host": "GitHub",
+    "hostUrl": "https://github.com/a2wahbi"
   },
   "retroTvCount": 21,
   "seoKeywords": [

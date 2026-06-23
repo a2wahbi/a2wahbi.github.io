@@ -79,9 +79,9 @@ const { footerAttribution } = siteData;
           footerAttribution.builder && (
             <>
               {' '}
-              · Built by{' '}
-              <a href={footerAttribution.builderUrl} target="_blank">
-                {footerAttribution.builder}
+              ·{' '}
+              <a href={footerAttribution.builderUrl} target="_blank" rel="noopener noreferrer">
+                Développé avec {footerAttribution.builder}
               </a>
             </>
           )
@@ -90,15 +90,15 @@ const { footerAttribution } = siteData;
           footerAttribution.host && (
             <>
               {' '}
-              / Hosting by{' '}
-              <a href={footerAttribution.hostUrl} target="_blank">
-                {footerAttribution.host}
+              ·{' '}
+              <a href={footerAttribution.hostUrl} target="_blank" rel="noopener noreferrer">
+                Code source sur {footerAttribution.host}
               </a>
             </>
           )
         }
-        &nbsp;·&nbsp;<a href={`${base}privacy.html`} class="hover:text-accent transition-colors">Privacy</a 
-        >&nbsp;·&nbsp;<a href={`${base}terms.html`} class="hover:text-accent transition-colors">Terms</a> 
+        &nbsp;·&nbsp;<a href={`${base}privacy.html`} class="hover:text-accent transition-colors">Confidentialité</a 
+        >&nbsp;·&nbsp;<a href={`${base}terms.html`} class="hover:text-accent transition-colors">Mentions légales</a> 
       </p>
       <div class="flex items-center gap-5">
         {
