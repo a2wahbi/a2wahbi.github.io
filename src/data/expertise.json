@@ -1,28 +1,32 @@
 {
+  "section": {
+    "eyebrow": "Domaines d’intervention",
+    "heading": "Expertise"
+  },
   "items": [
     {
-      "key": "sysadmin",
-      "icon": "server-stack",
-      "title": "Design & Art Direction",
-      "description": "Visual identity, layout, typography, and the aesthetic decisions that make people stop and look twice. Whether print or screen, the goal is the same — work that holds up."
+      "key": "embedded-architecture",
+      "icon": "cpu-chip",
+      "title": "Architecture de Systèmes Embarqués",
+      "description": "Conception de systèmes embarqués complets alliant électronique, firmware, capteurs, interfaces de communication et contraintes temps réel. De la spécification technique à l'architecture matérielle/logicielle, avec un focus sur la fiabilité, la maintenabilité et l'intégration sur le terrain."
     },
     {
-      "key": "webdev",
+      "key": "realtime-firmware",
       "icon": "code-bracket-square",
-      "title": "Web Design & Development",
-      "description": "From wireframe to deployment — building sites and apps that look considered, perform well, and give visitors exactly what they came for."
+      "title": "Développement Firmware Temps Réel",
+      "description": "Développement de firmware en C/C++ sur microcontrôleurs ARM Cortex-M. Gestion des tâches sous RTOS, interruptions, drivers, périphériques et comportement déterministe pour les applications temps réel critiques."
     },
     {
-      "key": "freelance",
-      "icon": "user-circle",
-      "title": "Creative Freelance",
-      "description": "Independent project work in photography, video, 3D, illustration, or wherever the brief leads. Direct to work with, flexible, and invested in the outcome."
+      "key": "electronics-integration",
+      "icon": "wrench-screwdriver",
+      "title": "Conception & Intégration Électronique",
+      "description": "Conception et intégration de cartes électroniques : schématique, routage, interfaces capteurs, circuits de puissance et de communication. Validation croisée matériel/logiciel (bring-up) et débogage sur banc d'essai."
     },
     {
-      "key": "leadership",
-      "icon": "users",
-      "title": "Collaboration & Direction",
-      "description": "Working alongside teams, clients, and stakeholders to take a project from idea to shipped — clear communication, honest timelines, and work that actually gets done."
+      "key": "industrial-connectivity",
+      "icon": "signal",
+      "title": "Connectivité & Protocoles Industriels",
+      "description": "Implémentation de protocoles de communication filaires et sans fil pour l'échange de données entre microcontrôleurs, capteurs et équipements industriels, dans le strict respect des contraintes de robustesse et de timing."
     }
   ]
 }

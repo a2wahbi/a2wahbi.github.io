@@ -58,10 +58,9 @@ const { section, categories } = skillsData;
   }
 
   .category-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
     color: var(--accent);
     margin-bottom: 1.25rem;
   }
@@ -69,8 +68,8 @@ const { section, categories } = skillsData;
   /* ── Skill grid ──────────────────────────────────── */
   .skill-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(68px, 1fr));
-    gap: 1rem 0.6rem;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    gap: 1rem 0.75rem;
   }
 
   .skill-item {
@@ -108,10 +107,11 @@ const { section, categories } = skillsData;
   }
 
   .skill-name {
-    font-size: 0.65rem;
-    font-weight: 500;
+    max-width: 7.5rem;
+    font-size: 0.7rem;
+    font-weight: 650;
     color: #64748b;
-    line-height: 1.2;
+    line-height: 1.25;
     transition: color 0.2s ease;
   }
   .skill-item:hover .skill-name {
@@ -134,7 +134,7 @@ const { section, categories } = skillsData;
 
   /* ── Responsive ──────────────────────────────────── */
   @media (max-width: 480px) {
-    .skill-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+    .skill-grid { grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); }
   }
 </style>
 
