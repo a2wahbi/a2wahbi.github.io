@@ -43,31 +43,31 @@
   "navExternal": [
     {
       "label": "Blog",
-      "desc": "Writing on design, process, and what I'm learning",
+      "desc": "Articles techniques et retours d’expérience",
       "personalKey": "blog",
       "urlTemplate": "{value}"
     },
     {
       "label": "GitHub",
-      "desc": "Open-source work and side experiments",
+      "desc": "Code, prototypes et projets embarqués",
       "personalKey": "github",
       "urlTemplate": "https://github.com/{value}"
     },
     {
       "label": "LinkedIn",
-      "desc": "Professional profile and recommendations",
+      "desc": "Parcours professionnel et réseau",
       "personalKey": "linkedin",
       "urlTemplate": "https://linkedin.com/in/{value}"
     },
     {
-      "label": "Email",
-      "desc": "Best way to reach me for project inquiries",
+      "label": "E-mail",
+      "desc": "Contact direct pour projet ou opportunité",
       "personalKey": "email",
       "urlTemplate": "mailto:{value}"
     },
     {
-      "label": "Phone",
-      "desc": "Available for calls by appointment",
+      "label": "Téléphone",
+      "desc": "Disponible sur rendez-vous",
       "personalKey": "phone",
       "urlTemplate": "tel:{value}"
     }

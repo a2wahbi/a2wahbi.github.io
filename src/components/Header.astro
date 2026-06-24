@@ -4,6 +4,10 @@ import menu from '../data/menu.json';
 import siteData from '../data/site.json';
 
 const { sections } = menu;
+const headerSectionOrder = ['#about', '#expertise', '#skills', '#projects', '#certifications', '#contact'];
+const headerSections = headerSectionOrder
+  .map((href) => sections.find((section) => section.href === href))
+  .filter(Boolean) as typeof sections;
 
 // Build external nav links from site.json definitions, skipping any whose personal.json key is empty.
 // This lets site authors add potential platforms to navExternal without requiring all fields be filled.
@@ -20,16 +24,24 @@ const external = siteData.navExternal
   .filter(Boolean) as { label: string; desc: string; url: string }[];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+<header class="site-header fixed top-0 left-0 right-0 z-50 glass-nav">
   <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <a href="#home" class="text-lg font-bold gradient-text tracking-tight shrink-0">
-        {personalData.name}
+    <div class="header-row flex items-center justify-between h-16">
+      <a href="#home" class="brand-link shrink-0" aria-label={`${personalData.name} — retour à l’accueil`}>
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-pin brand-pin-a"></span>
+          <span class="brand-pin brand-pin-b"></span>
+          <span class="brand-pulse"></span>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">{personalData.name}</span>
+          <span class="brand-role">{personalData.heroRole}</span>
+        </span>
       </a>
 
-      <div class="hidden lg:flex items-center gap-6">
+      <div class="primary-nav hidden xl:flex items-center gap-6" aria-label="Navigation principale">
         {
-          sections.map((item) => (
+          headerSections.map((item) => (
             <a href={item.href} class="nav-link nav-link-sm">
               {item.shortLabel}
             </a>
@@ -37,8 +49,8 @@ const external = siteData.navExternal
         }
       </div>
 
-      <div class="flex items-center gap-3">
-        <label class="switch" aria-label="Toggle light/dark mode" title="Toggle light / dark mode">
+      <div class="header-actions flex items-center gap-3">
+        <label class="switch" aria-label="Basculer entre thème clair et thème sombre" title="Mode clair / sombre">
           <span class="sun"
             ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
               ><g fill="#918155"
@@ -59,8 +71,8 @@ const external = siteData.navExternal
           <span class="slider"></span>
         </label>
 
-        <a href="#contact" class="cta-btn hidden sm:inline-flex">Contact Me</a>
-        <button id="menu-open-btn" class="hamburger-btn" aria-label="Open menu">
+        <a href="#contact" class="cta-btn hidden sm:inline-flex">Me contacter</a>
+        <button id="menu-open-btn" class="hamburger-btn" aria-label="Ouvrir le menu">
           <span></span>
           <span></span>
           <span></span>
@@ -69,7 +81,8 @@ const external = siteData.navExternal
     </div>
 
     <div id="dm-wrapper" class="dm-wrapper">
-      <div class="desktop-mega">
+      <div class="desktop-mega" aria-label="Liens rapides">
+        <span class="dm-rail" aria-hidden="true"></span>
         {
           external.map((link, i) => (
             <a href={link.url} target="_blank" rel="noopener" class="dm-item" style={`--i: ${i};`}>
@@ -104,22 +117,22 @@ const external = siteData.navExternal
   class="overlay"
   role="dialog"
   aria-modal="true"
-  aria-label="Site navigation"
+  aria-label="Navigation du site"
   aria-hidden="true"
 >
-  <button id="menu-close-btn" class="overlay-close" aria-label="Close menu">
+  <button id="menu-close-btn" class="overlay-close" aria-label="Fermer le menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
     </svg>
   </button>
 
-  <div class="overlay-glow" aria-hidden="true"></div>
+  <div class="overlay-circuit" aria-hidden="true"></div>
 
   <div class="overlay-inner">
-    <p class="overlay-eyebrow">Explore</p>
+    <p class="overlay-eyebrow">Navigation</p>
     <nav class="overlay-nav">
       {
-        sections.map((item, i) => (
+        headerSections.map((item, i) => (
           <a href={item.href} class="overlay-link" style={`--i: ${i};`}>
             <span class="overlay-num">0{i + 1}</span>
             <span class="overlay-link-body">
@@ -145,7 +158,7 @@ const external = siteData.navExternal
     </nav>
 
     <div class="overlay-bottom">
-      <p class="overlay-bottom-label">External</p>
+      <p class="overlay-bottom-label">Liens rapides</p>
       {
         external.map((link) => (
           <a href={link.url} target="_blank" rel="noopener" class="overlay-quick-link">
@@ -171,23 +184,160 @@ const external = siteData.navExternal
 </div>
 
 <style>
+  .site-header {
+    isolation: isolate;
+  }
+
+  .header-row {
+    gap: 1rem;
+  }
+
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--text);
+    text-decoration: none;
+    min-width: 0;
+  }
+
+  .brand-mark {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid rgba(99, 102, 241, 0.36);
+    border-radius: 0.45rem;
+    background:
+      linear-gradient(90deg, transparent 49%, rgba(99, 102, 241, 0.18) 50%, transparent 51%),
+      linear-gradient(0deg, transparent 49%, rgba(14, 165, 233, 0.16) 50%, transparent 51%),
+      var(--bg-card);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 0 18px rgba(14, 165, 233, 0.1);
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .brand-mark::before,
+  .brand-mark::after,
+  .brand-pin {
+    content: '';
+    position: absolute;
+    background: var(--neon);
+    opacity: 0.85;
+  }
+
+  .brand-mark::before {
+    left: 0.38rem;
+    right: 0.38rem;
+    top: 0.58rem;
+    height: 1px;
+  }
+
+  .brand-mark::after {
+    left: 0.58rem;
+    top: 0.58rem;
+    bottom: 0.48rem;
+    width: 1px;
+  }
+
+  .brand-pin {
+    width: 0.34rem;
+    height: 0.34rem;
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(14, 165, 233, 0.65);
+  }
+
+  .brand-pin-a {
+    right: 0.38rem;
+    top: 0.42rem;
+  }
+
+  .brand-pin-b {
+    left: 0.42rem;
+    bottom: 0.38rem;
+  }
+
+  .brand-pulse {
+    position: absolute;
+    right: 0.44rem;
+    bottom: 0.48rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid rgba(14, 165, 233, 0.8);
+    border-radius: 999px;
+    animation: brand-pulse 2.8s ease-in-out infinite;
+  }
+
+  .brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.08rem;
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.05;
+    color: var(--text);
+    white-space: nowrap;
+  }
+
+  .brand-role {
+    display: none;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .brand-role {
+      display: inline;
+    }
+  }
+
+  @keyframes brand-pulse {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.82);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+
   .cta-btn {
     align-items: center;
-    padding: 0.45rem 1rem;
-    border-radius: 0.5rem;
+    justify-content: center;
+    min-height: 2.25rem;
+    padding: 0.45rem 1.05rem;
+    border-radius: 0.55rem;
     font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    border: 1px solid rgba(99, 102, 241, 0.4);
-    color: rgb(99 102 241);
+    font-weight: 700;
+    letter-spacing: 0;
+    border: 1px solid rgba(99, 102, 241, 0.42);
+    color: var(--text);
+    background:
+      linear-gradient(var(--bg-nav), var(--bg-nav)) padding-box,
+      linear-gradient(135deg, rgba(99, 102, 241, 0.7), rgba(14, 165, 233, 0.62)) border-box;
     white-space: nowrap;
     transition:
       background 0.2s ease,
-      border-color 0.2s ease;
+      border-color 0.2s ease,
+      transform 0.2s ease;
   }
   .cta-btn:hover {
-    background: rgba(99, 102, 241, 0.1);
-    border-color: rgb(99 102 241);
+    transform: translateY(-1px);
+    border-color: rgba(14, 165, 233, 0.7);
+    background:
+      linear-gradient(rgba(99, 102, 241, 0.12), rgba(14, 165, 233, 0.08)) padding-box,
+      linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(14, 165, 233, 0.9)) border-box;
   }
   .cta-btn:focus-visible {
     outline: 2px solid var(--accent);
@@ -197,15 +347,14 @@ const external = siteData.navExternal
   .switch {
     position: relative;
     display: inline-block;
-    width: 64px;
-    height: 34px;
+    width: 3.5rem;
+    height: 2rem;
     flex-shrink: 0;
     cursor: pointer;
     transition:
       filter 500ms ease-in-out,
       transform 500ms ease-in-out;
-    transform: scale(0.75);
-    filter: saturate(1.25) brightness(1.33);
+    filter: saturate(1.08) brightness(1.08);
   }
   .switch:hover,
   .switch:focus-within {
@@ -227,39 +376,43 @@ const external = siteData.navExternal
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--bg-surface);
+    background:
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      linear-gradient(135deg, rgba(99, 102, 241, 0.56), rgba(14, 165, 233, 0.42)) border-box;
+    border: 1px solid transparent;
     transition: 0.4s;
     border-radius: 30px;
   }
   .slider:before {
     position: absolute;
     content: '';
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: var(--text-muted);
+    height: 1.38rem;
+    width: 1.38rem;
+    left: 0.25rem;
+    bottom: 0.25rem;
+    background: linear-gradient(135deg, #e2e8f0, #94a3b8);
     transition: 0.4s;
     border-radius: 50%;
+    box-shadow: 0 3px 12px rgba(2, 6, 23, 0.28);
   }
   .switch .sun svg {
     position: absolute;
-    top: 6px;
-    left: 36px;
+    top: 0.43rem;
+    left: 1.95rem;
     z-index: 1;
-    width: 24px;
-    height: 24px;
+    width: 1.08rem;
+    height: 1.08rem;
     animation: sw-rotate 30s linear infinite;
     will-change: transform;
   }
   .switch .moon svg {
     fill: var(--text-muted);
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 0.41rem;
+    left: 0.45rem;
     z-index: 1;
-    width: 24px;
-    height: 24px;
+    width: 1.08rem;
+    height: 1.08rem;
     animation: sw-tilt 5s linear infinite;
     will-change: transform;
   }
@@ -299,19 +452,21 @@ const external = siteData.navExternal
   }
 
   .input:checked + .slider {
-    background-color: var(--bg-card);
+    background:
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      linear-gradient(135deg, rgba(14, 165, 233, 0.7), rgba(99, 102, 241, 0.66)) border-box;
   }
   .input:focus + .slider {
     box-shadow: 0 0 1px var(--bg-card);
   }
   .input:checked + .slider:before {
-    transform: translateX(30px);
-    background-color: var(--accent-blue);
+    transform: translateX(1.5rem);
+    background: linear-gradient(135deg, #60a5fa, #6366f1);
   }
   @media (max-width: 767px) {
     .switch {
-      position: absolute;
-      right: 15vw;
+      width: 3.35rem;
+      height: 1.9rem;
     }
   }
 
@@ -323,14 +478,15 @@ const external = siteData.navExternal
     width: 36px;
     height: 36px;
     padding: 6px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s ease;
   }
   .hamburger-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba(99, 102, 241, 0.36);
   }
   .hamburger-btn:focus-visible {
     outline: 2px solid var(--accent);
@@ -351,20 +507,60 @@ const external = siteData.navExternal
     width: 65%;
   }
 
-  .nav-link-sm {
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-dim);
+  .primary-nav {
+    gap: 1.25rem;
   }
+
+  .nav-link-sm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    padding: 0.48rem 0.78rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    box-shadow: none;
+    font-size: 0.88rem;
+    font-weight: 650;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #cbd5e1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .site-header .nav-link-sm::after {
+    display: none;
+  }
+
   .nav-link-sm:hover {
-    color: var(--text);
+    color: #f8fafc;
+    transform: translateY(-1px);
+    background: rgba(30, 41, 59, 0.72);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.1);
+  }
+
+  .nav-link-sm:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .site-header .nav-link.active {
+    color: #f8fafc;
+    background: rgba(30, 41, 59, 0.82);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.14);
   }
 
   .overlay {
     position: fixed;
     inset: 0;
-    z-index: 200;
+    z-index: 10000;
     background: var(--bg-overlay);
     display: flex;
     flex-direction: column;
@@ -379,14 +575,16 @@ const external = siteData.navExternal
     pointer-events: all;
   }
 
-  .overlay-glow {
+  .overlay-circuit {
     position: absolute;
-    top: -10%;
-    right: -5%;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14, 165, 233, 0.07) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75), transparent);
+    -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75), transparent);
+    opacity: 0.36;
     pointer-events: none;
   }
 
@@ -400,7 +598,7 @@ const external = siteData.navExternal
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--bg-card);
     border: 1px solid var(--border);
     color: var(--text-dim);
     cursor: pointer;
@@ -415,7 +613,7 @@ const external = siteData.navExternal
   }
   .overlay-close:hover {
     color: var(--text);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(99, 102, 241, 0.1);
   }
   .overlay-close:focus-visible {
     outline: 2px solid var(--accent);
@@ -440,6 +638,18 @@ const external = siteData.navExternal
     text-transform: uppercase;
     color: var(--text-dim);
     margin-bottom: 2.5rem;
+  }
+
+  .overlay-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 0.46rem;
+    height: 0.46rem;
+    margin-right: 0.62rem;
+    border-radius: 999px;
+    background: var(--neon);
+    box-shadow: 0 0 12px rgba(14, 165, 233, 0.5);
+    vertical-align: 0.08rem;
   }
 
   .overlay-nav {
@@ -604,42 +814,77 @@ const external = siteData.navExternal
   }
 
   .desktop-mega {
+    position: relative;
     min-height: 0;
     overflow: hidden;
-    display: flex;
-    margin: 0 -1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    margin: 0;
+    gap: 0.65rem;
+    padding: 0.58rem 0;
+    isolation: isolate;
+  }
+
+  .dm-rail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.45), rgba(99, 102, 241, 0.35), transparent);
+    transform: translateX(-40%);
+    animation: dm-rail-scan 5.8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
   }
 
   .dm-item {
-    flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.65rem 1rem;
-    border-right: 1px solid var(--border);
+    gap: 0.72rem;
+    min-height: 3.55rem;
+    padding: 0.7rem 0.78rem;
+    border: 1px solid var(--border);
+    border-radius: 0.78rem;
+    background:
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      linear-gradient(135deg, rgba(99, 102, 241, 0.34), rgba(14, 165, 233, 0.24)) border-box;
+    box-shadow: 0 10px 26px rgba(2, 6, 23, 0.12);
     text-decoration: none;
     color: var(--text-dim);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     transition:
       color 0.2s ease,
       background 0.25s ease,
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
       transform 0.45s cubic-bezier(0.4, 0, 0.2, 1) calc((var(--i)) * 0.04s),
       opacity 0.35s ease calc((var(--i)) * 0.04s);
+  }
+  .dm-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(14, 165, 233, 0.34);
+    box-shadow: 0 14px 34px rgba(2, 6, 23, 0.18), 0 0 0 1px rgba(99, 102, 241, 0.06);
+  }
+  .dm-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
   }
   header.scrolled .dm-item {
     transform: translateY(-10px);
     opacity: 0;
-  }
-  .dm-item:last-child {
-    border-right: none;
   }
 
   .dm-item::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(99, 102, 241, 0.05);
+    background:
+      linear-gradient(90deg, rgba(14, 165, 233, 0.08), rgba(99, 102, 241, 0.05)),
+      repeating-linear-gradient(90deg, transparent 0 18px, rgba(255, 255, 255, 0.035) 18px 19px);
     opacity: 0;
     transition: opacity 0.25s ease;
   }
@@ -662,17 +907,25 @@ const external = siteData.navExternal
   }
 
   .dm-num {
-    font-size: 0.62rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.85rem;
+    height: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.58rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--text-dimmer);
-    min-width: 1.5rem;
+    min-width: 1.85rem;
     transition: color 0.2s ease;
-    align-self: flex-start;
-    padding-top: 2px;
+    align-self: center;
+    background: rgba(255, 255, 255, 0.025);
   }
   .dm-item:hover .dm-num {
-    color: rgba(99, 102, 241, 0.6);
+    color: var(--neon);
+    border-color: rgba(14, 165, 233, 0.35);
   }
 
   .dm-body {
@@ -684,7 +937,7 @@ const external = siteData.navExternal
   }
 
   .dm-label {
-    font-size: 0.92rem;
+    font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1;
@@ -693,11 +946,11 @@ const external = siteData.navExternal
     transition: color 0.2s ease;
   }
   .dm-item:hover .dm-label {
-    color: var(--accent);
+    color: var(--text);
   }
 
   .dm-desc {
-    font-size: 0.65rem;
+    font-size: 0.66rem;
     color: var(--text-dimmer);
     line-height: 1.3;
     white-space: nowrap;
@@ -710,19 +963,78 @@ const external = siteData.navExternal
   }
 
   .dm-arrow {
-    width: 0.85rem;
-    height: 0.85rem;
+    width: 1.78rem;
+    height: 1.78rem;
+    padding: 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: 0.55rem;
+    background: rgba(255, 255, 255, 0.025);
     color: var(--text-dimmer);
     flex-shrink: 0;
-    align-self: flex-start;
-    margin-top: 2px;
+    align-self: center;
+    margin-top: 0;
     transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
       color 0.2s ease,
       transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .dm-item:hover .dm-arrow {
-    color: #a5b4fc;
-    transform: translate(3px, -3px);
+    color: #e0f2fe;
+    border-color: rgba(14, 165, 233, 0.36);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.28), rgba(14, 165, 233, 0.22));
+    transform: translate(2px, -2px);
+  }
+
+  :global([data-theme='light']) .primary-nav {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  :global([data-theme='light']) .nav-link-sm {
+    color: #475569;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  :global([data-theme='light']) .nav-link-sm:hover {
+    color: #1e293b;
+    background: #f1f5f9;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.04);
+  }
+
+  :global([data-theme='light']) .site-header .nav-link.active {
+    color: #1e293b;
+    background: #e2e8f0;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+  }
+
+  :global([data-theme='light']) .dm-item {
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.055);
+  }
+
+  :global([data-theme='light']) .dm-item:hover {
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.09), 0 0 0 1px rgba(14, 165, 233, 0.08);
+  }
+
+  :global([data-theme='light']) .dm-arrow,
+  :global([data-theme='light']) .dm-num {
+    background: rgba(248, 250, 252, 0.78);
+  }
+
+  @keyframes dm-rail-scan {
+    0% {
+      transform: translateX(-45%);
+      opacity: 0;
+    }
+    12%,
+    80% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(45%);
+      opacity: 0;
+    }
   }
 
   #overlay-menu .overlay-inner {
@@ -734,12 +1046,6 @@ const external = siteData.navExternal
   }
   .nav-link.active::after {
     width: 100%;
-  }
-
-  @media (min-width: 640px) and (max-width: 767px) {
-    header .container .gap-3 {
-      gap: 30vw !important;
-    }
   }
 
   @media (min-width: 1024px) and (max-width: 1279px) {

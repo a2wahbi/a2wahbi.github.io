@@ -32,15 +32,15 @@
     },
     {
       "label": "Certifications",
-      "shortLabel": "Certs",
+      "shortLabel": "Certifications",
       "href": "#certifications",
       "desc": "Formations, certifications et apprentissages"
     },
     {
-      "label": "Services",
-      "shortLabel": "Services",
+      "label": "Profils & liens",
+      "shortLabel": "Profils",
       "href": "#services",
-      "desc": "Liens, profils et ressources associées"
+      "desc": "GitHub, LinkedIn et ressources publiques"
     },
     {
       "label": "Contact",
