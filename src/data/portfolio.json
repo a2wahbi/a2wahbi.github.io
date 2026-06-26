@@ -1,34 +1,32 @@
 [
   {
-    "title": "Brand Identity & Visual System",
-    "category": "Branding",
-    "description": "A complete brand overhaul for a growing company — logo, typography, color system, and a style guide built to scale. Designed for flexibility without sacrificing cohesion.",
-    "images": [
-      "/images/portfolio/project-1a.jpg",
-      "/images/portfolio/project-1b.jpg",
-      "/images/portfolio/project-1c.jpg"
-    ],
-    "slides": ["Brand Overview", "Style Guide Spread", "Product Shot"]
+    "title": "Architecture système",
+    "category": "Architecture",
+    "description": "Structuration du robot comme un système embarqué complet : alimentation, calcul, capteurs, actionneurs, communications et interfaces de contrôle.",
+    "bullets": [
+      "Découpage matériel / firmware / contrôle",
+      "Interfaces entre sous-systèmes",
+      "Contraintes de robustesse et maintenabilité"
+    ]
   },
   {
-    "title": "Interactive Web Experience",
-    "category": "Web Design",
-    "description": "A custom-built site blending editorial layout with smooth scroll interactions and motion. Designed in Figma, built in code, and optimized down to the frame.",
-    "images": [
-      "/images/portfolio/project-2a.jpg",
-      "/images/portfolio/project-2b.jpg",
-      "/images/portfolio/project-2c.jpg"
-    ],
-    "slides": ["Homepage Figma Design", "Homepage Complete", "Second Phase app page"]
+    "title": "Électronique embarquée",
+    "category": "Hardware",
+    "description": "Travail autour des cartes, interfaces capteurs, distribution d’énergie, signaux de commande et validation progressive du comportement matériel.",
+    "bullets": [
+      "Schématique et intégration HW/SW",
+      "Interfaces capteurs et actionneurs",
+      "Tests sur banc et corrections itératives"
+    ]
   },
   {
-    "title": "Short Film & Motion Piece",
-    "category": "Video",
-    "description": "A two-minute visual essay combining original footage, 3D elements, and motion design. Shot, edited, and scored independently — start to finish in three weeks.",
-    "images": [
-      "/images/portfolio/project-3a.jpg",
-      "/images/portfolio/project-3b.jpg"
-    ],
-    "slides": ["Opening Scene", "Modeling Sequence", "Developing Music for Documentary"]
+    "title": "Locomotion et prototypage",
+    "category": "Contrôle",
+    "description": "Développement progressif des fonctions de mouvement : commande moteur, synchronisation, comportement temps réel et préparation des cycles de test du prototype.",
+    "bullets": [
+      "Contrôle moteur et asservissement",
+      "Firmware temps réel",
+      "Validation par étapes du prototype"
+    ]
   }
 ]

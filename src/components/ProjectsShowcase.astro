@@ -8,17 +8,17 @@ const projectsData = projectsFile.items;
 <section id="projects" class="projects-section">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12 reveal visible">
-      <p class="text-sm font-semibold tracking-widest text-highlight uppercase mb-3">My work</p>
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold section-title">Projects</h2>
+      <p class="text-sm font-semibold tracking-widest text-highlight uppercase mb-3">Réalisations</p>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold section-title">Projets</h2>
     </div>
 
     <div class="projects-list">
       {
         projectsData.map((project, index) => {
           const hasImages = Boolean(project.backgroundImage && (project as any).images?.length);
-          const ctaLabel = project.link.includes('github.com') ? 'View on GitHub'
-            : project.link.includes('gitlab') ? 'View on GitLab'
-            : project.link ? 'View Project'
+          const ctaLabel = project.link.includes('github.com') ? 'Voir sur GitHub'
+            : project.link.includes('gitlab') ? 'Voir sur GitLab'
+            : project.link ? 'Voir le projet'
             : null;
 
           return (

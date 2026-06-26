@@ -19,7 +19,7 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
       <p class="resume-title">{personal.title}</p>
     </div>
     <div class="header-right">
-      <div>{personal.email} · {personal.phone}</div>
+      <div>{personal.email}{personal.phone && ` · ${personal.phone}`}</div>
       <div>{personal.location}</div>
       <div>linkedin.com/in/{personal.linkedin} · github.com/{personal.github}</div>
     </div>
@@ -28,12 +28,12 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
   <hr class="header-rule" />
 
   <section class="resume-section">
-    <h2 class="section-title">Summary</h2>
+    <h2 class="section-title">Profil</h2>
     <p class="body-text">{personal.bio}</p>
   </section>
 
   <section class="resume-section">
-    <h2 class="section-title">Technical Skills</h2>
+    <h2 class="section-title">Compétences techniques</h2>
     <div class="skills-grid">
       {skillsData.categories.map(category => (
         <div class="skill-row">
@@ -45,7 +45,7 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
   </section>
 
   <section class="resume-section">
-    <h2 class="section-title">Areas of Expertise</h2>
+    <h2 class="section-title">Domaines d’expertise</h2>
     <p class="body-text">{expertiseData.map(e => e.title).join('  ·  ')}</p>
   </section>
 
@@ -66,7 +66,7 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
   </section>
 
   <section class="resume-section">
-    <h2 class="section-title">Notable Projects</h2>
+    <h2 class="section-title">Projets notables</h2>
     <div class="projects-list">
       {resumeProjects.map(project => project && (
         <div class="project-item">
@@ -82,12 +82,12 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
 
   <div class="resume-footer-row">
     <section class="resume-section">
-      <h2 class="section-title">Education</h2>
+      <h2 class="section-title">Formation</h2>
       <p class="body-text">{personal.education}</p>
     </section>
 
     <section class="resume-section">
-      <h2 class="section-title">Volunteer</h2>
+      <h2 class="section-title">Bénévolat</h2>
       <p class="body-text">{personal.volunteer}</p>
     </section>
   </div>

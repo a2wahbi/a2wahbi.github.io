@@ -47,7 +47,7 @@ const defaultSchema = {
         "@type": "PostalAddress",
         addressLocality: personalData.addressLocality,
         addressRegion: personalData.addressRegion,
-        addressCountry: "US",
+        addressCountry: "FR",
       },
       description: personalData.bio,
       sameAs: sameAsLinks,
@@ -69,7 +69,7 @@ function safeJsonLd(obj: object): string {
 ---
 
 <!doctype html>
-<html lang="en" style="color-scheme: dark; background: #020617;" data-theme-key={siteData.themeStorageKey}>
+<html lang="fr" style="color-scheme: dark; background: #020617;" data-theme-key={siteData.themeStorageKey}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -79,7 +79,7 @@ function safeJsonLd(obj: object): string {
     <meta name="author" content={personalData.name} />
     <meta name="application-name" content={siteData.ogSiteName} />
     <meta name="color-scheme" content="dark light" />
-    <meta name="geo.region" content={`US-${personalData.addressRegion}`} />
+    <meta name="geo.region" content="FR-CVL" />
     <meta name="geo.placename" content={`${personalData.addressLocality}, ${personalData.addressRegion}`} />
     <meta name="contact" content={personalData.email} />
     <link rel="canonical" href={canonicalURL} />
@@ -94,7 +94,7 @@ function safeJsonLd(obj: object): string {
     <meta property="og:image:height" content="460" />
     <meta property="og:image:alt"    content={ogImageAlt} />
     <meta property="og:site_name"    content={siteData.ogSiteName} />
-    <meta property="og:locale"       content="en_US" />
+    <meta property="og:locale"       content="fr_FR" />
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card"        content="summary_large_image" />
@@ -105,8 +105,8 @@ function safeJsonLd(obj: object): string {
     {personalData.twitter && <meta name="twitter:site"    content={personalData.twitter} />}
     {personalData.twitter && <meta name="twitter:creator" content={personalData.twitter} />}
 
-    <!-- Favicon: GIF first so animated-capable browsers prefer it -->
-    <link rel="icon" type="image/gif"  href={`${base}images/favicons/favicon.gif`} />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href={`${base}images/favicons/favicon-electronics.svg`} />
     <link rel="icon"                   href={`${base}images/favicons/favicon.ico`} sizes="any" />
     <link rel="icon" type="image/png" sizes="96x96"  href={`${base}images/favicons/favicon-96x96.png`} />
     <link rel="icon" type="image/png" sizes="32x32"  href={`${base}images/favicons/favicon-32x32.png`} />
@@ -177,7 +177,7 @@ function safeJsonLd(obj: object): string {
     </script>
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
     <slot />
   </body>
 </html>
