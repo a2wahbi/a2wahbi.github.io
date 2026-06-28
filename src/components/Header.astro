@@ -81,7 +81,13 @@ const external = siteData.navExternal
         </label>
 
         <a href="#contact" class="cta-btn hidden sm:inline-flex">Me contacter</a>
-        <button id="menu-open-btn" class="hamburger-btn" aria-label="Ouvrir le menu">
+        <button
+          id="menu-open-btn"
+          class="hamburger-btn"
+          aria-label="Ouvrir le menu"
+          aria-controls="overlay-menu"
+          aria-expanded="false"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -117,6 +123,8 @@ const external = siteData.navExternal
   aria-modal="true"
   aria-label="Navigation du site"
   aria-hidden="true"
+  hidden
+  inert
 >
   <button id="menu-close-btn" class="overlay-close" aria-label="Fermer le menu">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -566,6 +574,9 @@ const external = siteData.navExternal
     opacity: 0;
     transition: opacity 0.35s ease;
   }
+  .overlay[hidden] {
+    display: none !important;
+  }
   .overlay.open {
     opacity: 1;
     backdrop-filter: blur(12px);
@@ -911,7 +922,7 @@ const external = siteData.navExternal
     text-overflow: ellipsis;
   }
 
-  @media (min-width: 1280px) {
+  @media (min-width: 1536px) {
     .social-dock {
       display: flex;
     }
@@ -1016,30 +1027,45 @@ const external = siteData.navExternal
     applyTheme(next);
   });
 
-  const overlay = document.getElementById('overlay-menu')!;
-  const openBtn = document.getElementById('menu-open-btn')!;
-  const closeBtn = document.getElementById('menu-close-btn')!;
+  const overlay = document.getElementById('overlay-menu') as HTMLDivElement;
+  const openBtn = document.getElementById('menu-open-btn') as HTMLButtonElement;
+  const closeBtn = document.getElementById('menu-close-btn') as HTMLButtonElement;
+  let closeTimer: number | undefined;
 
   function openMenu() {
-    overlay.classList.add('open');
+    window.clearTimeout(closeTimer);
+    overlay.hidden = false;
+    overlay.removeAttribute('inert');
     overlay.setAttribute('aria-hidden', 'false');
+    openBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => {
+      overlay.classList.add('open');
+      closeBtn.focus();
+    });
   }
-  function closeMenu() {
+  function closeMenu(restoreFocus = true) {
+    if (overlay.hidden) return;
     overlay.classList.remove('open');
     overlay.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('inert', '');
+    openBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    closeTimer = window.setTimeout(() => {
+      overlay.hidden = true;
+    }, 350);
+    if (restoreFocus) openBtn.focus();
   }
 
   openBtn.addEventListener('click', openMenu);
-  closeBtn.addEventListener('click', closeMenu);
+  closeBtn.addEventListener('click', () => closeMenu());
 
   overlay.querySelectorAll('.overlay-link, .overlay-quick-link').forEach((a) => {
-    a.addEventListener('click', closeMenu);
+    a.addEventListener('click', () => closeMenu(false));
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
+    if (e.key === 'Escape' && !overlay.hidden) closeMenu();
   });
 
   const sections = document.querySelectorAll('section[id]');

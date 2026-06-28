@@ -98,7 +98,7 @@ const projectSlides = [
             </a>
           ) : (
             <button type="button" onclick="window.print()" class="hero-btn hero-btn-secondary">
-              Télécharger mon CV
+              Imprimer mon CV
             </button>
           )
         }
@@ -117,7 +117,7 @@ const projectSlides = [
 
       {
         heroSocialLinks.length > 0 && (
-          <div class="hero-socials hero-animate" style="--delay: 480ms;" aria-label="Profils publics">
+          <div class="hero-socials hero-animate" style="--delay: 480ms;" aria-label="Liens sociaux">
             {heroSocialLinks.map((link) => (
               <a href={link.url} target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label={link.label}>
                 <iconify-icon icon={link.icon} width="20" height="20" aria-hidden="true" />

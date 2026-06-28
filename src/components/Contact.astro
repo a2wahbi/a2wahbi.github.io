@@ -146,7 +146,7 @@ const socialLinks = getSocialLinks(personalData as unknown as Record<string, str
         </div>
 
         <div class="card reveal" style="transition-delay: 0.2s;">
-          <form id="contact-form" class="space-y-4" novalidate>
+          <form id="contact-form" class="space-y-4">
             <input type="hidden" name="access_key" value={siteData.web3formsKey} />
             <input type="hidden" name="from_name" value="Portfolio Ahmed Amine WAHBI" />
             <input type="hidden" name="subject" value="[Portfolio] Nouveau message de contact" />
@@ -283,6 +283,12 @@ const socialLinks = getSocialLinks(personalData as unknown as Record<string, str
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      setStatus('Merci de compléter les champs obligatoires avant l’envoi.', true);
+      return;
+    }
+
     if (button) {
       button.disabled = true;
       button.textContent = 'Envoi en cours…';
@@ -295,7 +301,7 @@ const socialLinks = getSocialLinks(personalData as unknown as Record<string, str
         body: new FormData(form!),
       });
       const data = (await res.json()) as { success?: boolean; message?: string };
-      if (res.ok) {
+      if (res.ok && data.success) {
         setStatus('Message envoyé. Je vous répondrai dès que possible.', false);
         form!.reset();
       } else {
