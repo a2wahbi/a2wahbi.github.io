@@ -40,8 +40,11 @@
       "icon": "signal",
       "sliderImage": "",
       "sliderOrder": 2,
-      "backgroundImage": "",
-      "images": [],
+      "backgroundImage": "/images/projects/reseau-capteurs-ihm-1.png",
+      "images": [
+        "/images/projects/reseau-capteurs-ihm-1.png",
+        "/images/projects/reseau-capteurs-ihm-2.png"
+      ],
       "link": "",
       "colorIcon": "",
       "githubRepo": ""
