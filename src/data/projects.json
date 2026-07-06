@@ -16,8 +16,11 @@
       "icon": "cpu-chip",
       "sliderImage": "",
       "sliderOrder": 1,
-      "backgroundImage": "",
-      "images": [],
+      "backgroundImage": "/images/projects/robot-polyvalent-autonome-1.jpg",
+      "images": [
+        "/images/projects/robot-polyvalent-autonome-1.jpg",
+        "/images/projects/robot-polyvalent-autonome-2.jpg"
+      ],
       "link": "",
       "colorIcon": "",
       "githubRepo": ""
