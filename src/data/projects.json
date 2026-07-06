@@ -7,12 +7,20 @@
       "resume": true,
       "company": "",
       "category": "Projets",
-      "description": "Développement d’un robot pilotable à distance via une IHM en PyQt.",
+      "description": "Robot mobile autonome basé sur ROS2, micro-ROS, STM32F411 et Raspberry Pi, avec IHM PyQt, détection d’obstacles et suivi de cible par caméra.",
       "highlights": [
         "Détection d’obstacles, ajustement de trajectoire selon coordonnées caméra",
         "Asservissement de vitesse et gestion des tâches en FreeRTOS."
       ],
-      "tags": ["PyQt", "FreeRTOS"],
+      "details": [
+        "Architecture distribuée PC hôte / Raspberry Pi 4 / STM32F411 : IHM, flux vidéo, traitement d’image et contrôle bas niveau.",
+        "IHM ROS2 en PyQt pour sélectionner les modes manuel, aléatoire et tracking, transmettre vitesse/direction et afficher les données du robot.",
+        "STM32 sous FreeRTOS pour l’asservissement des moteurs en boucle fermée, l’acquisition des capteurs de distance et les échanges UART avec la Raspberry Pi.",
+        "Communication ROS2 / micro-ROS entre PC, Raspberry Pi et STM32 pour publier les mesures capteurs et recevoir les commandes de déplacement.",
+        "Traitement d’image OpenCV sur Raspberry Pi pour détecter le barycentre d’une couleur et piloter le suivi autonome.",
+        "Détection d’obstacles avant/arrière intégrée aux modes de déplacement manuel et autonome."
+      ],
+      "tags": ["ROS2", "micro-ROS", "STM32F411", "Raspberry Pi", "FreeRTOS", "OpenCV", "PyQt", "UART"],
       "icon": "cpu-chip",
       "sliderImage": "",
       "sliderOrder": 1,

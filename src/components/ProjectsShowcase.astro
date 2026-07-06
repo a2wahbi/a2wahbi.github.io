@@ -22,6 +22,7 @@ const projectsData = projectsFile.items;
             : project.link.includes('gitlab') ? 'Voir sur GitLab'
             : project.link ? 'Voir l’étude de cas'
             : null;
+          const projectDetails = ((project as any).details?.length ? (project as any).details : (project as any).highlights) ?? [];
 
           return (
             <article class={`project-feature reveal visible ${hasImages ? '' : 'project-feature--compact'}`} data-index={index}>
@@ -68,9 +69,9 @@ const projectsData = projectsFile.items;
                 <h3>{project.title}</h3>
                 <p class="project-description">{project.description}</p>
 
-                {(project as any).highlights?.length > 0 && (
+                {projectDetails.length > 0 && (
                   <ul class="project-highlights" aria-label={`Points clés de ${project.title}`}>
-                    {(project as any).highlights.map((highlight: string) => (
+                    {projectDetails.map((highlight: string) => (
                       <li>{highlight}</li>
                     ))}
                   </ul>
