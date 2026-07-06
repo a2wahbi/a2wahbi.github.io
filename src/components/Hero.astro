@@ -617,9 +617,9 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
 
   .project-slide {
     flex: 0 0 100%;
-    min-height: 27rem;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
     background:
       linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(2, 6, 23, 0.94)),
       #020617;
@@ -627,7 +627,8 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
 
   .project-art {
     position: relative;
-    min-height: 17rem;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
     overflow: hidden;
     background:
       linear-gradient(140deg, rgba(14, 165, 233, 0.2), transparent 36%),
@@ -636,17 +637,26 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
   }
 
   .project-art.has-project-image {
-    background: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+    background:
+      linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.42)),
+      #020617;
   }
 
   .project-art-image {
-    position: absolute;
-    inset: 0;
+    position: relative;
     z-index: 0;
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 0.72rem;
+    background: rgba(2, 6, 23, 0.42);
+    box-shadow: 0 18px 42px rgba(2, 6, 23, 0.22);
   }
 
   .project-art::after {
@@ -660,10 +670,7 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
   }
 
   .project-art.has-project-image::after {
-    background:
-      linear-gradient(180deg, rgba(2, 6, 23, 0.02), rgba(2, 6, 23, 0.22)),
-      linear-gradient(90deg, rgba(14, 165, 233, 0.08), transparent 34%, rgba(129, 140, 248, 0.08));
-    opacity: 1;
+    display: none;
   }
 
   .art-grid {
@@ -967,6 +974,18 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
       #f8fafc;
   }
 
+  :global([data-theme='light']) .project-art.has-project-image {
+    background:
+      linear-gradient(135deg, rgba(248, 250, 252, 0.96), rgba(226, 232, 240, 0.82)),
+      #f8fafc;
+  }
+
+  :global([data-theme='light']) .project-art-image {
+    border-color: rgba(15, 23, 42, 0.1);
+    background: #ffffff;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.1);
+  }
+
   :global([data-theme='light']) .project-slide-content {
     border-top-color: rgba(15, 23, 42, 0.08);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
@@ -1013,13 +1032,8 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
       font-size: 3.55rem;
     }
 
-    .project-slide {
-      grid-template-columns: minmax(0, 1.12fr) minmax(16rem, 0.88fr);
-    }
-
     .project-slide-content {
-      border-top: 0;
-      border-left: 1px solid rgba(148, 163, 184, 0.12);
+      border-top: 1px solid rgba(148, 163, 184, 0.12);
     }
   }
 
@@ -1066,7 +1080,7 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
     }
 
     .project-art {
-      min-height: 15.5rem;
+      aspect-ratio: 4 / 3;
     }
 
     .project-slide-content {
