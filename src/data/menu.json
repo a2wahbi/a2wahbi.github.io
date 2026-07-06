@@ -7,10 +7,10 @@
       "desc": "Parcours, profil et approche technique"
     },
     {
-      "label": "Expertise",
-      "shortLabel": "Expertise",
-      "href": "#expertise",
-      "desc": "Domaines d’intervention et méthodes de travail"
+      "label": "Expériences professionnelles",
+      "shortLabel": "Expériences",
+      "href": "#experience",
+      "desc": "Expériences professionnelles"
     },
     {
       "label": "Compétences",
@@ -19,28 +19,16 @@
       "desc": "Outils, technologies et savoir-faire techniques"
     },
     {
-      "label": "Portfolio",
-      "shortLabel": "Portfolio",
-      "href": "#portfolio",
-      "desc": "Vitrine technique et réalisations détaillées"
-    },
-    {
       "label": "Projets",
       "shortLabel": "Projets",
       "href": "#projects",
       "desc": "Projets personnels, prototypes et expérimentations"
     },
     {
-      "label": "Certifications",
-      "shortLabel": "Certifications",
-      "href": "#certifications",
-      "desc": "Formations, certifications et apprentissages"
-    },
-    {
-      "label": "Profils & liens",
-      "shortLabel": "Profils",
-      "href": "#services",
-      "desc": "GitHub, LinkedIn et ressources publiques"
+      "label": "Formation",
+      "shortLabel": "Formation",
+      "href": "#education",
+      "desc": "Formation, langues et centres d’intérêt"
     },
     {
       "label": "Contact",

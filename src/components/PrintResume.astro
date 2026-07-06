@@ -1,14 +1,11 @@
 ---
 import personal from '../data/personal.json';
 import skillsData from '../data/skills.json';
-import certsData from '../data/certifications.json';
-import expertiseFile from '../data/expertise.json';
 import projectsFile from '../data/projects.json';
-const expertiseData = expertiseFile.items;
-const resumeProjects = projectsFile.items.filter(p => (p as any).resume);
+import resumeData from '../data/resume.json';
 
-const earnedCerts = certsData.filter(c => c.status === 'Earned');
-const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
+const skillCategories = skillsData.categories as Array<{ title: string; text?: string; skills: Array<{ name: string }> }>;
+const resumeProjects = projectsFile.items.filter((p) => (p as any).resume);
 ---
 
 <div class="print-only" id="resume-print">
@@ -33,48 +30,51 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
   </section>
 
   <section class="resume-section">
-    <h2 class="section-title">Compétences techniques</h2>
+    <h2 class="section-title">Compétences</h2>
     <div class="skills-grid">
-      {skillsData.categories.map(category => (
+      {skillCategories.map(category => (
         <div class="skill-row">
-          <span class="skill-category">{category.title}</span>
-          <span class="skill-items">{category.skills.map(s => s.name).join(' · ')}</span>
+          <span class="skill-items">{category.text ?? `${category.title} : ${category.skills.map(s => s.name).join(', ')}`}</span>
         </div>
       ))}
     </div>
   </section>
 
   <section class="resume-section">
-    <h2 class="section-title">Domaines d’expertise</h2>
-    <p class="body-text">{expertiseData.map(e => e.title).join('  ·  ')}</p>
-  </section>
-
-  <section class="resume-section">
-    <h2 class="section-title">Certifications</h2>
-    <div class="cert-list">
-      {earnedCerts.map(cert => (
-        <span class="cert-item cert-earned">
-          <span class="cert-mark">✓</span>{cert.name}
-        </span>
-      ))}
-      {inProgressCerts.map(cert => (
-        <span class="cert-item cert-planned">
-          <span class="cert-mark">○</span>{cert.name} — {cert.date}
-        </span>
+    <h2 class="section-title">Expériences professionnelles</h2>
+    <div class="resume-experience-list">
+      {resumeData.experiences.map((experience) => (
+        <article class="resume-experience-item">
+          <div class="resume-experience-header">
+            <span class="resume-experience-title">{experience.title}</span>
+            <span class="resume-experience-period">{experience.period}</span>
+          </div>
+          <p class="resume-experience-company">{experience.company}</p>
+          {experience.description && <p class="project-desc">{experience.description}</p>}
+          {experience.bullets && (
+            <ul class="resume-bullets">
+              {experience.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+          )}
+        </article>
       ))}
     </div>
   </section>
 
   <section class="resume-section">
-    <h2 class="section-title">Projets notables</h2>
+    <h2 class="section-title">Projets</h2>
     <div class="projects-list">
       {resumeProjects.map(project => project && (
         <div class="project-item">
           <div class="project-header">
             <span class="project-title">{project.title}</span>
-            <span class="project-tags">{project.tags.slice(0, 4).join(' · ')}</span>
           </div>
           <p class="project-desc">{project.description}</p>
+          {(project as any).highlights?.length > 0 && (
+            <ul class="resume-bullets">
+              {(project as any).highlights.map((highlight: string) => <li>{highlight}</li>)}
+            </ul>
+          )}
         </div>
       ))}
     </div>
@@ -83,12 +83,22 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
   <div class="resume-footer-row">
     <section class="resume-section">
       <h2 class="section-title">Formation</h2>
-      <p class="body-text">{personal.education}</p>
+      <div class="compact-list">
+        {resumeData.education.map((item) => (
+          <p class="body-text">
+            <strong>{item.title}</strong><br />
+            {item.school}<br />
+            {item.period}
+          </p>
+        ))}
+      </div>
     </section>
 
     <section class="resume-section">
-      <h2 class="section-title">Bénévolat</h2>
-      <p class="body-text">{personal.volunteer}</p>
+      <h2 class="section-title">Langues</h2>
+      <p class="body-text">{resumeData.languages.join(' · ')}</p>
+      <h2 class="section-title section-title-inline">Centres d’intérêt</h2>
+      <p class="body-text">{resumeData.interests.join(' · ')}</p>
     </section>
   </div>
 
@@ -174,57 +184,48 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
   }
 
   .skill-row {
-    display: grid;
-    grid-template-columns: 14rem 1fr;
-    gap: 0 6px;
     font-size: 9.5pt;
     line-height: 1.55;
-  }
-
-  .skill-category {
-    font-weight: 600;
-    color: #000;
   }
 
   .skill-items {
     color: #111;
   }
 
-  /* Certifications */
-  .cert-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3px 20px;
-    font-size: 9.5pt;
+  .resume-experience-list {
+    display: grid;
+    gap: 5px;
   }
 
-  .cert-item {
+  .resume-experience-item {
+    page-break-inside: avoid;
+  }
+
+  .resume-experience-header {
     display: flex;
+    justify-content: space-between;
     align-items: baseline;
-    gap: 4px;
+    gap: 8px;
   }
 
-  .cert-mark {
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .cert-earned .cert-mark {
+  .resume-experience-title {
+    font-weight: 600;
+    font-size: 10pt;
     color: #000;
   }
 
-  .cert-earned {
-    color: #000;
-    font-weight: 500;
+  .resume-experience-period {
+    flex: 0 0 auto;
+    color: #222;
+    font-size: 9.5pt;
+    text-align: right;
   }
 
-  .cert-planned .cert-mark {
+  .resume-experience-company {
+    margin: 1px 0 0 0;
     color: #222;
-  }
-
-  .cert-planned {
-    color: #222;
-    font-weight: 400;
+    font-size: 9.5pt;
+    font-style: italic;
   }
 
   /* Projects */
@@ -246,13 +247,17 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
   }
 
   .project-title {
+    flex: 1 1 auto;
+    min-width: 0;
     font-weight: 600;
     font-size: 10pt;
     color: #000;
-    white-space: nowrap;
+    white-space: normal;
   }
 
   .project-tags {
+    flex: 0 0 auto;
+    max-width: 46%;
     font-size: 8.5pt;
     color: #222;
     text-align: right;
@@ -267,10 +272,27 @@ const inProgressCerts = certsData.filter(c => c.status !== 'Earned');
     line-height: 1.4;
   }
 
+  .resume-bullets {
+    margin: 1px 0 0 0;
+    padding-left: 18px;
+    font-size: 9pt;
+    color: #111;
+    line-height: 1.35;
+  }
+
+  .compact-list {
+    display: grid;
+    gap: 5px;
+  }
+
   /* Education + Volunteer side by side */
   .resume-footer-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 24px;
+  }
+
+  .section-title-inline {
+    margin-top: 8px !important;
   }
 </style>

@@ -17,6 +17,9 @@ const { section, categories } = skillsData;
       {categories.map((category, ci) => (
         <div class="skills-card card reveal" style={`transition-delay: ${ci * 0.1}s;`}>
           <h3 class="category-title">{category.title}</h3>
+          {'text' in category && category.text && (
+            <p class="skill-source-line">{category.text}</p>
+          )}
 
           <div class="skill-grid">
             {category.skills.map((skill) => (
@@ -62,7 +65,14 @@ const { section, categories } = skillsData;
     font-weight: 800;
     letter-spacing: 0.01em;
     color: var(--accent);
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .skill-source-line {
+    margin: 0 0 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    line-height: 1.55;
   }
 
   /* ── Skill grid ──────────────────────────────────── */

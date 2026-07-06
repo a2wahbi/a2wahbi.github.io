@@ -1,64 +1,88 @@
 {
   "section": {
-    "eyebrow": "Outils, plateformes et méthodes",
-    "heading": "Arsenal Technique"
+    "eyebrow": "Compétences",
+    "heading": "Compétences"
   },
   "categories": [
     {
-      "title": "Langages & Firmware",
+      "title": "Langages",
+      "text": "Langages : C, C++, Python, VHDL.",
       "skills": [
         { "name": "C", "icon": "simple-icons:c" },
         { "name": "C++", "icon": "simple-icons:cplusplus" },
         { "name": "Python", "icon": "simple-icons:python" },
-        { "name": "Architecture firmware", "icon": "lucide:cpu" }
+        { "name": "VHDL", "icon": "lucide:cpu" }
       ]
     },
     {
-      "title": "OS Temps Réel & Embarqué",
+      "title": "Logiciel embarqué",
+      "text": "Logiciel embarqué : Embedded Linux, multicœurs ARM, FreeRTOS, ROS 2, gestion multitâche.",
       "skills": [
-        { "name": "RTOS", "icon": "lucide:timer" },
-        { "name": "Linux Embarqué", "icon": "simple-icons:linux" },
-        { "name": "Systèmes POSIX", "icon": "lucide:terminal" }
+        { "name": "Embedded Linux", "icon": "simple-icons:linux" },
+        { "name": "multicœurs ARM", "icon": "simple-icons:arm" },
+        { "name": "FreeRTOS", "icon": "lucide:timer" },
+        { "name": "ROS 2", "icon": "lucide:network" },
+        { "name": "gestion multitâche", "icon": "lucide:blocks" }
       ]
     },
     {
-      "title": "Microcontrôleurs & Plateformes",
+      "title": "Électronique",
+      "text": "Électronique : Conception et tests de cartes électroniques, électronique analogique/numérique, intégration capteurs/actionneurs.",
       "skills": [
-        { "name": "Famille STM32", "icon": "lucide:microchip" },
-        { "name": "ESP32", "icon": "simple-icons:espressif" },
-        { "name": "Arduino", "icon": "simple-icons:arduino" },
-        { "name": "Raspberry Pi", "icon": "simple-icons:raspberrypi" },
-        { "name": "ARM Cortex-M", "icon": "simple-icons:arm" },
-        { "name": "Silicon Labs BGM240", "icon": "lucide:bluetooth" }
+        { "name": "Conception et tests de cartes électroniques", "icon": "lucide:circuit-board" },
+        { "name": "électronique analogique/numérique", "icon": "lucide:activity" },
+        { "name": "intégration capteurs/actionneurs", "icon": "lucide:cable" }
       ]
     },
     {
-      "title": "Protocoles & Communication",
+      "title": "Protocoles",
+      "text": "Protocoles : UART, SPI, I2C, CAN, Modbus TCP/RTU, BLE GATT , MQTT , UDP, Wi-Fi.",
       "skills": [
-        { "name": "SPI, I2C, UART, CAN", "icon": "lucide:cable" },
+        { "name": "UART", "icon": "lucide:cable" },
+        { "name": "SPI", "icon": "lucide:cable" },
+        { "name": "I2C", "icon": "lucide:cable" },
+        { "name": "CAN", "icon": "lucide:network" },
+        { "name": "Modbus TCP/RTU", "icon": "lucide:network" },
         { "name": "BLE GATT", "icon": "simple-icons:bluetooth" },
-        { "name": "Modbus TCP/RTU, UDP", "icon": "lucide:network" }
+        { "name": "MQTT", "icon": "lucide:network" },
+        { "name": "UDP", "icon": "lucide:network" },
+        { "name": "Wi-Fi", "icon": "lucide:network" }
       ]
     },
     {
-      "title": "CAO Électronique (ECAD)",
+      "title": "Microcontrôleurs et platformes",
+      "text": "Microcontrôleurs et platformes : STM32, Raspberry Pi, Arduino, Silicon Labs, ESP32.",
+      "skills": [
+        { "name": "STM32", "icon": "lucide:microchip" },
+        { "name": "Raspberry Pi", "icon": "simple-icons:raspberrypi" },
+        { "name": "Arduino", "icon": "simple-icons:arduino" },
+        { "name": "Silicon Labs", "icon": "lucide:bluetooth" },
+        { "name": "ESP32", "icon": "simple-icons:espressif" }
+      ]
+    },
+    {
+      "title": "Outils de développement",
+      "text": "Outils de développement : STM32CubeIDE, Visual Studio Code, Git, Ceedling / Unity, Arduino IDE, Simplicity Studio, ModelSim, Quartus.",
+      "skills": [
+        { "name": "STM32CubeIDE", "icon": "lucide:blocks" },
+        { "name": "Visual Studio Code", "icon": "simple-icons:visualstudiocode" },
+        { "name": "Git", "icon": "simple-icons:git" },
+        { "name": "Ceedling / Unity", "icon": "lucide:test-tube" },
+        { "name": "Arduino IDE", "icon": "simple-icons:arduino" },
+        { "name": "Simplicity Studio", "icon": "lucide:bluetooth" },
+        { "name": "ModelSim", "icon": "lucide:terminal" },
+        { "name": "Quartus", "icon": "lucide:terminal" }
+      ]
+    },
+    {
+      "title": "CAO et outils de simulation",
+      "text": "CAO et outils de simulation : KiCad, Altium, Eagle, LTspice, PSpice.",
       "skills": [
         { "name": "KiCad", "icon": "simple-icons:kicad" },
-        { "name": "Eagle", "icon": "lucide:circuit-board" },
         { "name": "Altium", "icon": "lucide:layers-3" },
-        { "name": "LTspice / PSpice", "icon": "lucide:activity" }
-      ]
-    },
-    {
-      "title": "IDE & Outils de test",
-      "skills": [
-        { "name": "Git", "icon": "simple-icons:git" },
-        { "name": "Ceedling", "icon": "lucide:test-tube" },
-        { "name": "STM32CubeIDE", "icon": "lucide:blocks" },
-        { "name": "VS Code", "icon": "simple-icons:visualstudiocode" },
-        { "name": "Simplicity Studio", "icon": "lucide:bluetooth" },
-        { "name": "Oscilloscope & Analyseur Logique", "icon": "lucide:audio-waveform" },
-        { "name": "Validation sur banc & Scripts Python", "icon": "lucide:clipboard-check" }
+        { "name": "Eagle", "icon": "lucide:circuit-board" },
+        { "name": "LTspice", "icon": "lucide:activity" },
+        { "name": "PSpice", "icon": "lucide:activity" }
       ]
     }
   ]

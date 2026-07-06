@@ -2,13 +2,17 @@
   "layout": "showcase",
   "items": [
     {
-      "title": "Chien robot quadrupède",
+      "title": "Robot polyvalent autonome",
       "featured": true,
       "resume": true,
-      "company": "Projet personnel",
-      "category": "robotique embarquée",
-      "description": "Conception complète d’un robot quadrupède développé de A à Z : architecture système, électronique, firmware, locomotion, contrôle moteur, intégration mécanique et validation progressive du prototype.",
-      "tags": ["Robotique", "STM32", "Firmware", "Contrôle moteur", "Intégration système"],
+      "company": "",
+      "category": "Projets",
+      "description": "Développement d’un robot pilotable à distance via une IHM en PyQt.",
+      "highlights": [
+        "Détection d’obstacles, ajustement de trajectoire selon coordonnées caméra",
+        "Asservissement de vitesse et gestion des tâches en FreeRTOS."
+      ],
+      "tags": ["PyQt", "FreeRTOS"],
       "icon": "cpu-chip",
       "sliderImage": "",
       "sliderOrder": 1,
@@ -19,20 +23,65 @@
       "githubRepo": ""
     },
     {
-      "title": "Portfolio Astro personnel",
+      "title": "Réseau de capteurs & IHM",
       "featured": true,
       "resume": true,
-      "company": "Projet personnel",
-      "category": "portfolio technique",
-      "description": "Adaptation complète d’un template Astro en portfolio professionnel français : structuration des données, personnalisation UX/UI, nettoyage des placeholders, intégration Web3Forms et optimisation du rendu responsive.",
-      "tags": ["Astro", "UX/UI", "Données JSON", "Responsive", "Déploiement GitHub"],
-      "icon": "command-line",
+      "company": "",
+      "category": "Projets",
+      "description": "Récupération de données de plusieurs capteurs et affichage sur IHM.",
+      "highlights": [
+        "Transmission vers un PC hôte via bus CAN."
+      ],
+      "tags": ["IHM", "CAN"],
+      "icon": "signal",
       "sliderImage": "",
       "sliderOrder": 2,
       "backgroundImage": "",
       "images": [],
-      "link": "https://github.com/a2wahbi",
-      "colorIcon": "simple-icons:astro",
+      "link": "",
+      "colorIcon": "",
+      "githubRepo": ""
+    },
+    {
+      "title": "Robot mobile",
+      "featured": true,
+      "resume": true,
+      "company": "",
+      "category": "Projets",
+      "description": "Création d’une IHM de contrôle du robot à distance.",
+      "highlights": [
+        "Intégration des communications UART, I2C et SPI pour capteurs temps réel.",
+        "Modélisation mécanique du robot sous CATIA V5.",
+        "Étude cinématique et simulations sous SCILAB."
+      ],
+      "tags": ["UART", "I2C", "SPI", "CATIA V5", "SCILAB"],
+      "icon": "cog-6-tooth",
+      "sliderImage": "",
+      "sliderOrder": 3,
+      "backgroundImage": "",
+      "images": [],
+      "link": "",
+      "colorIcon": "",
+      "githubRepo": ""
+    },
+    {
+      "title": "Gestion automatisée de parking (système RFID)",
+      "featured": true,
+      "resume": true,
+      "company": "",
+      "category": "Projets",
+      "description": "Développement d'un système automatisé de gestion de parking utilisant la technologie RFID.",
+      "highlights": [
+        "Programmation Arduino pour contrôle automatisé des entrées/sorties de véhicules."
+      ],
+      "tags": ["RFID", "Arduino"],
+      "icon": "adjustments-horizontal",
+      "sliderImage": "",
+      "sliderOrder": 4,
+      "backgroundImage": "",
+      "images": [],
+      "link": "",
+      "colorIcon": "",
       "githubRepo": ""
     }
   ]

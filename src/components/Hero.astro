@@ -1,5 +1,6 @@
 ---
 import personalData from '../data/personal.json';
+import projectsFile from '../data/projects.json';
 import { withBase } from '../lib/assetPath';
 import { getSocialLinks } from '../lib/socialLinks';
 import { existsSync, readdirSync } from 'node:fs';
@@ -31,31 +32,17 @@ const hasCv = Boolean(cvPath);
 const cvHref = isExternalCv ? cvPath : cvPath ? withBase(cvPath) : '';
 
 const capabilities = [
-  { value: 'Hardware', label: 'Architecture & Conception PCB' },
-  { value: 'Firmware', label: 'Développement logiciel' },
-  { value: 'IHM', label: 'Interface Hommes-Machines' },
+  { value: 'Langages', label: 'C, C++, Python, VHDL.' },
+  { value: 'Logiciel embarqué', label: 'Embedded Linux, multicœurs ARM, FreeRTOS, ROS 2, gestion multitâche.' },
+  { value: 'Électronique', label: 'Conception et tests de cartes électroniques, électronique analogique/numérique, intégration capteurs/actionneurs.' },
 ];
 
-const projectSlides = [
-  {
-    label: 'Projet 01',
-    title: 'Architecture embarquée',
-    description: 'Support visuel prévu pour un projet combinant hardware, firmware et intégration système.',
-    accent: 'Architecture',
-  },
-  {
-    label: 'Projet 02',
-    title: 'Carte électronique',
-    description: 'Emplacement dédié aux futurs visuels de conception PCB, routage et validation.',
-    accent: 'PCB',
-  },
-  {
-    label: 'Projet 03',
-    title: 'Interface de contrôle',
-    description: 'Zone prévue pour présenter les interfaces, outils de test et tableaux de bord techniques.',
-    accent: 'IHM',
-  },
-];
+const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
+  label: 'Projet',
+  title: project.title,
+  description: project.description,
+  accent: project.tags[0] ?? 'Projet',
+}));
 ---
 
 <section id="home" class="hero-section" aria-labelledby="hero-title">
@@ -76,17 +63,15 @@ const projectSlides = [
   <div class="hero-shell">
     <div class="hero-copy">
       <p class="hero-kicker hero-animate" style="--delay: 80ms;">
-        INGÉNIERIE ÉLECTRONIQUE & SYSTÈMES EMBARQUÉS
+        {personalData.title}
       </p>
 
       <h1 id="hero-title" class="hero-title hero-animate" style="--delay: 160ms;">
-        Conception de systèmes électroniques complets
+        {personalData.name}
       </h1>
 
       <p class="hero-lead hero-animate" style="--delay: 240ms;">
-        Je conçois des systèmes embarqués en alliant architecture matérielle et développement logiciel. 
-        Mon expertise couvre l'électronique analogique et numérique, la mesure, l'acquisition, le traitement de données, 
-        la communication et les algorithmes de commande, le tout souvent architecturé autour d'un noyau temps réel (RTOS).
+        {personalData.bio}
       </p>
 
       <div class="hero-actions hero-animate" style="--delay: 320ms;">
@@ -104,7 +89,7 @@ const projectSlides = [
         }
       </div>
 
-      <div class="hero-meta hero-animate" style="--delay: 400ms;" aria-label="Axes d’expertise">
+      <div class="hero-meta hero-animate" style="--delay: 400ms;" aria-label="Compétences">
         {
           capabilities.map((item) => (
             <div class="hero-meta-item">
@@ -138,10 +123,10 @@ const projectSlides = [
       >
         <div class="carousel-header">
           <div>
-            <span class="carousel-eyebrow">Vitrine projets</span>
-            <strong>Projets techniques à venir</strong>
+            <span class="carousel-eyebrow">Projets</span>
+            <strong>Projets</strong>
           </div>
-          <span class="carousel-status">Maquette</span>
+          <span class="carousel-status">CV</span>
         </div>
 
         <div class="carousel-viewport">

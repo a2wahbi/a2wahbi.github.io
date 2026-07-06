@@ -4,7 +4,7 @@ import menu from '../data/menu.json';
 import siteData from '../data/site.json';
 
 const { sections } = menu;
-const headerSectionOrder = ['#about', '#expertise', '#skills', '#projects', '#certifications', '#contact'];
+const headerSectionOrder = ['#about', '#experience', '#skills', '#projects', '#education', '#contact'];
 const headerSections = headerSectionOrder
   .map((href) => sections.find((section) => section.href === href))
   .filter(Boolean) as typeof sections;

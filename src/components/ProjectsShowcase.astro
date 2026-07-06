@@ -8,7 +8,7 @@ const projectsData = projectsFile.items;
 <section id="projects" class="projects-section">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12 reveal visible">
-      <p class="text-sm font-semibold tracking-widest text-highlight uppercase mb-3">Réalisations</p>
+      <p class="text-sm font-semibold tracking-widest text-highlight uppercase mb-3">Projets</p>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold section-title">Projets</h2>
     </div>
 
@@ -16,9 +16,11 @@ const projectsData = projectsFile.items;
       {
         projectsData.map((project, index) => {
           const hasImages = Boolean(project.backgroundImage && (project as any).images?.length);
+          const projectLink = project.link ? withBase(project.link) : '';
+          const isExternalLink = /^https?:\/\//i.test(project.link);
           const ctaLabel = project.link.includes('github.com') ? 'Voir sur GitHub'
             : project.link.includes('gitlab') ? 'Voir sur GitLab'
-            : project.link ? 'Voir le projet'
+            : project.link ? 'Voir l’étude de cas'
             : null;
 
           return (
@@ -66,6 +68,14 @@ const projectsData = projectsFile.items;
                 <h3>{project.title}</h3>
                 <p class="project-description">{project.description}</p>
 
+                {(project as any).highlights?.length > 0 && (
+                  <ul class="project-highlights" aria-label={`Points clés de ${project.title}`}>
+                    {(project as any).highlights.map((highlight: string) => (
+                      <li>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+
                 <div class="project-tags">
                   {project.tags.map((tag) => (
                     <span>{tag}</span>
@@ -73,7 +83,12 @@ const projectsData = projectsFile.items;
                 </div>
 
                 {ctaLabel && (
-                  <a href={project.link} target="_blank" rel="noopener" class="project-link">
+                  <a
+                    href={projectLink}
+                    target={isExternalLink ? '_blank' : undefined}
+                    rel={isExternalLink ? 'noopener' : undefined}
+                    class="project-link"
+                  >
                     {ctaLabel}
                     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
                       <path
@@ -148,6 +163,10 @@ const projectsData = projectsFile.items;
   @media (min-width: 768px) {
     .project-feature {
       grid-template-columns: 1.05fr 0.95fr;
+    }
+
+    .project-feature--compact {
+      grid-template-columns: 0.78fr 1.22fr;
     }
   }
 
@@ -285,9 +304,17 @@ const projectsData = projectsFile.items;
     padding: 2rem;
   }
 
+  .project-feature--compact .project-copy {
+    justify-content: flex-start;
+  }
+
   @media (min-width: 768px) {
     .project-copy {
       padding: 2.75rem;
+    }
+
+    .project-feature--compact .project-copy {
+      padding: 2.35rem 2.5rem;
     }
   }
 
@@ -303,9 +330,9 @@ const projectsData = projectsFile.items;
   .project-copy h3 {
     margin: 0;
     color: var(--text);
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(1.65rem, 3vw, 2.45rem);
     font-weight: 900;
-    line-height: 0.95;
+    line-height: 1;
     letter-spacing: 0;
   }
 
@@ -315,6 +342,34 @@ const projectsData = projectsFile.items;
     color: var(--text-muted);
     font-size: 0.98rem;
     line-height: 1.75;
+  }
+
+  .project-highlights {
+    display: grid;
+    gap: 0.55rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-highlights li {
+    position: relative;
+    padding-left: 1.15rem;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .project-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.66em;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: #34d399;
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.45);
   }
 
   .project-tags {
@@ -397,6 +452,9 @@ const projectsData = projectsFile.items;
     border-color: rgba(16, 185, 129, 0.3);
     background: rgba(16, 185, 129, 0.08);
     color: #065f46;
+  }
+  :global([data-theme='light']) .project-highlights li {
+    color: #475569;
   }
   :global([data-theme='light']) .project-art-overlay {
     background: linear-gradient(90deg, rgba(248, 250, 252, 0.04), rgba(248, 250, 252, 0.55));
