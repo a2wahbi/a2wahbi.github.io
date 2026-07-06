@@ -42,6 +42,7 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
   title: project.title,
   description: project.description,
   accent: project.tags[0] ?? 'Projet',
+  image: project.backgroundImage || (project as any).images?.[0] || '',
 }));
 ---
 
@@ -141,16 +142,30 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
                   aria-hidden={index === 0 ? 'false' : 'true'}
                   aria-roledescription="diapositive"
                 >
-                  <div class="project-art" aria-hidden="true">
-                    <div class="art-grid"></div>
-                    <span class="art-glow art-glow-a"></span>
-                    <span class="art-glow art-glow-b"></span>
-                    <span class="art-line art-line-a"></span>
-                    <span class="art-line art-line-b"></span>
-                    <span class="art-line art-line-c"></span>
-                    <span class="art-node art-node-a"></span>
-                    <span class="art-node art-node-b"></span>
-                    <span class="art-node art-node-c"></span>
+                  <div class={`project-art${slide.image ? ' has-project-image' : ''}`} aria-hidden="true">
+                    {slide.image && (
+                      <img
+                        class="project-art-image"
+                        src={withBase(slide.image)}
+                        alt=""
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        width="900"
+                        height="560"
+                      />
+                    )}
+                    {!slide.image && (
+                      <>
+                        <div class="art-grid"></div>
+                        <span class="art-glow art-glow-a"></span>
+                        <span class="art-glow art-glow-b"></span>
+                        <span class="art-line art-line-a"></span>
+                        <span class="art-line art-line-b"></span>
+                        <span class="art-line art-line-c"></span>
+                        <span class="art-node art-node-a"></span>
+                        <span class="art-node art-node-b"></span>
+                        <span class="art-node art-node-c"></span>
+                      </>
+                    )}
                   </div>
 
                   <div class="project-slide-content">
@@ -620,6 +635,20 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
       #020617;
   }
 
+  .project-art.has-project-image {
+    background: #020617;
+  }
+
+  .project-art-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .project-art::after {
     content: '';
     position: absolute;
@@ -628,6 +657,13 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
       linear-gradient(90deg, transparent 0 18%, rgba(56, 189, 248, 0.12) 18% 18.35%, transparent 18.35% 100%),
       linear-gradient(180deg, transparent 0 34%, rgba(129, 140, 248, 0.14) 34% 34.35%, transparent 34.35% 100%);
     opacity: 0.8;
+  }
+
+  .project-art.has-project-image::after {
+    background:
+      linear-gradient(180deg, rgba(2, 6, 23, 0.02), rgba(2, 6, 23, 0.22)),
+      linear-gradient(90deg, rgba(14, 165, 233, 0.08), transparent 34%, rgba(129, 140, 248, 0.08));
+    opacity: 1;
   }
 
   .art-grid {
