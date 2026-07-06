@@ -7,20 +7,20 @@
       "resume": true,
       "company": "",
       "category": "Projets",
-      "description": "Robot mobile autonome basé sur ROS2, micro-ROS, STM32F411 et Raspberry Pi, avec IHM PyQt, détection d’obstacles et suivi de cible par caméra.",
+      "description": "Système robotique distribué entre un PC Hôte, un Raspberry Pi et une STM32 Nucleo F411, conçu pour piloter un robot mobile en modes Manuel, Aléatoire et Tracking.",
       "highlights": [
-        "Détection d’obstacles, ajustement de trajectoire selon coordonnées caméra",
-        "Asservissement de vitesse et gestion des tâches en FreeRTOS."
+        "Développement en C sous FreeRTOS sur STM32 Nucleo F411 pour la commande bas niveau du robot.",
+        "Implémentation de la boucle d’asservissement en vitesse des moteurs à courant continu.",
+        "Acquisition des capteurs de distance Laser et Infrarouge pour la détection d’obstacles.",
+        "Développement d’une IHM PyQt sur PC Hôte pour la sélection des modes, l’affichage de la télémétrie et l’échange de messages via ROS2."
       ],
       "details": [
-        "Architecture distribuée PC hôte / Raspberry Pi 4 / STM32F411 : IHM, flux vidéo, traitement d’image et contrôle bas niveau.",
-        "IHM ROS2 en PyQt pour sélectionner les modes manuel, aléatoire et tracking, transmettre vitesse/direction et afficher les données du robot.",
-        "STM32 sous FreeRTOS pour l’asservissement des moteurs en boucle fermée, l’acquisition des capteurs de distance et les échanges UART avec la Raspberry Pi.",
-        "Communication ROS2 / micro-ROS entre PC, Raspberry Pi et STM32 pour publier les mesures capteurs et recevoir les commandes de déplacement.",
-        "Traitement d’image OpenCV sur Raspberry Pi pour détecter le barycentre d’une couleur et piloter le suivi autonome.",
-        "Détection d’obstacles avant/arrière intégrée aux modes de déplacement manuel et autonome."
+        "Contrôle embarqué : Développement en C sous FreeRTOS sur STM32 Nucleo F411 pour la commande bas niveau du robot.",
+        "Asservissement moteur : Implémentation de la boucle d’asservissement en vitesse des moteurs à courant continu.",
+        "Perception embarquée : Acquisition des capteurs de distance Laser et Infrarouge pour la détection d’obstacles.",
+        "Supervision et communication : Développement d’une IHM PyQt sur PC Hôte pour la sélection des modes, l’affichage de la télémétrie et l’échange de messages via ROS2 avec le Raspberry Pi et la STM32."
       ],
-      "tags": ["ROS2", "micro-ROS", "STM32F411", "Raspberry Pi", "FreeRTOS", "OpenCV", "PyQt", "UART"],
+      "tags": ["C", "FreeRTOS", "STM32 Nucleo F411", "Raspberry Pi", "PyQt", "ROS2", "Traitement d’image", "Capteurs Laser", "Capteurs Infrarouge", "Asservissement moteur"],
       "icon": "cpu-chip",
       "sliderImage": "",
       "sliderOrder": 1,
