@@ -126,6 +126,22 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body {
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @supports not (overflow: clip) {
+    html,
+    body {
+      overflow-x: hidden;
+    }
   }
 
   button,

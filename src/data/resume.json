@@ -4,26 +4,26 @@
       "title": "Ingénieur Électronique et Systèmes Embarqués",
       "company": "TEKIN SAS - Tours, France",
       "period": "Depuis septembre 2024",
+      "description": "Développement d'un robot autonome destiné au diagnostic des caténaires ferroviaires.",
       "bullets": [
-        "Développement d'un robot autonome pour diagnostic des caténaires ferroviaires.",
         "Définition des spécifications fonctionnelles et techniques.",
-        "Conception de l’architecture logicielle et matérielle.",
-        "Développement en C sous FreeRTOS sur STM32H7 multicœurs, STM32F4 et BGM240P.",
-        "Intégration de protocoles de communication SPI, I2C, UART, UDP et Modbus TCP pour les échanges entre capteurs et microcontrôleurs.",
-        "Intégration d’une communication Bluetooth Low Energy (GATT) avec une application Android via un microcontrôleur BGM240P de Silicon Labs.",
-        "Réalisation de tests unitaires, fonctionnels et d’intégration pour la validation du logiciel embarqué.",
-        "Conception de cartes électroniques : choix des composants, réalisation de schémas, routage PCB et validation des cartes."
+        "Conception de l'architecture logicielle et matérielle du système embarqué.",
+        "Développement firmware en C sous FreeRTOS sur STM32H7 multicœurs, STM32F4 et BGM240P.",
+        "Intégration des communications SPI, I2C, UART, UDP, Modbus TCP et BLE GATT.",
+        "Connexion BLE avec application Android via microcontrôleur Silicon Labs BGM240P.",
+        "Validation par tests unitaires, fonctionnels et d'intégration.",
+        "Conception de cartes électroniques : choix composants, schématique, routage PCB et validation."
       ]
     },
     {
       "title": "Ingénieur Électronique et Systèmes Embarqués - Stage",
       "company": "TEKIN SAS - Tours, France",
       "period": "février 2024 - septembre 2024",
+      "description": "Réalisation du premier prototype d'un robot autonome pour inspection ferroviaire.",
       "bullets": [
-        "Développement d’un premier prototype d’un robot autonome pour diagnostic des caténaires ferroviaires",
         "Développement embarqué en C sur STM32 et BGM240P sous FreeRTOS.",
-        "Intégration des communications UART, SPI, I²C et UDP entre capteurs et microcontrôleurs.",
-        "Développement d’une IHM en Python pour le pilotage et le monitoring temps réel.",
+        "Intégration des communications UART, SPI, I2C et UDP entre capteurs et microcontrôleurs.",
+        "Développement d'une IHM Python pour pilotage et monitoring temps réel.",
         "Réalisation de tests unitaires et fonctionnels, puis validation du prototype sur site."
       ]
     },
@@ -31,34 +31,47 @@
       "title": "Technicien Multitechnique - Stage",
       "company": "Allanic 29 - Landerneau, France",
       "period": "juin 2023 - septembre 2023",
-      "description": "Conception d’une fileuse semi-automatique et modélisation 3D sous AutoCAD, dans le cadre de l’automatisation du tirage de câbles électriques en environnement industriel."
+      "description": "Conception d'une fileuse semi-automatique pour le tirage de câbles électriques en environnement industriel.",
+      "bullets": [
+        "Modélisation mécanique du système sous AutoCAD.",
+        "Étude fonctionnelle : motorisation, capteurs de fin de course et sécurité opérateur.",
+        "Participation au choix des composants et au suivi de fabrication.",
+        "Collaboration avec les équipes maintenance et automatisme du site."
+      ]
     },
     {
       "title": "Technicien Électricien - Stage",
       "company": "RADEM - Meknès, Maroc",
       "period": "juin 2022 - septembre 2022",
-      "description": "Participation à des travaux d’installation et de maintenance électrique en milieu industriel et tertiaire (pose de câbles, armoires, raccordements)."
+      "description": "Travaux d'installation et de maintenance électrique en environnements industriel et tertiaire.",
+      "bullets": [
+        "Pose de câbles, raccordement d'armoires électriques et lecture de plans.",
+        "Mise en conformité d'installations basse tension.",
+        "Participation aux interventions de maintenance préventive et corrective sur site."
+      ]
     }
   ],
   "education": [
     {
       "title": "Diplôme d’ingénieur - Électronique et Systèmes embarqués",
       "school": "École Nationale d’Ingénieurs de Brest (ENIB), France",
-      "period": "2022 - 2025"
+      "period": "2022 - 2025",
+      "description": "Formation d'ingénieur spécialisée en électronique et systèmes embarqués."
     },
     {
       "title": "Technicien en Génie Électrique et Informatique Industrielle (GEII)",
       "school": "École Supérieure de Technologie - Meknès, Maroc",
-      "period": "2020 - 2022"
+      "period": "2020 - 2022",
+      "description": "Formation technologique en génie électrique et informatique industrielle."
     }
   ],
   "languages": [
     "Français : Courant",
-    "Anglais : niveau B2"
+    "Anglais : B2 - Linguaskill Business 179/180"
   ],
   "interests": [
-    "Football",
-    "Voyages",
-    "Projets de robotique DIY"
+    "Robotique embarquée",
+    "Prototypage électronique",
+    "Veille systèmes embarqués"
   ]
 }

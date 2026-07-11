@@ -1,11 +1,29 @@
 [
   {
-    "name": "Certifications techniques",
-    "issuer": "État public actuel",
-    "date": "Mise à jour 2026",
-    "status": "À documenter",
-    "type": "in-progress",
-    "description": "Aucune certification publique vérifiée n’est affichée pour le moment. Cette section restera réservée aux certifications réellement obtenues ou aux formations techniques documentées.",
+    "name": "Linguaskill Business",
+    "issuer": "Cambridge English",
+    "date": "14/06/2025",
+    "status": "Obtenue",
+    "type": "certification",
+    "description": "Certification d'anglais professionnel selon le CECRL. Score global : 179/180, niveau B2, avec compréhension orale C1 ou supérieur.",
+    "credentialUrl": ""
+  },
+  {
+    "name": "Développez en C pour l'embarqué",
+    "issuer": "OpenClassrooms",
+    "date": "11/02/2024",
+    "status": "Validée",
+    "type": "professional-development",
+    "description": "Formation centrée sur le développement C appliqué aux systèmes embarqués : structuration du code, manipulation de données et programmation proche matériel.",
+    "credentialUrl": ""
+  },
+  {
+    "name": "Apprenez à programmer en C++",
+    "issuer": "OpenClassrooms",
+    "date": "25/02/2024",
+    "status": "Validée",
+    "type": "professional-development",
+    "description": "Formation sur les fondamentaux C++, la syntaxe, la programmation orientée objet, la structuration du code et les bonnes pratiques de développement.",
     "credentialUrl": ""
   }
 ]

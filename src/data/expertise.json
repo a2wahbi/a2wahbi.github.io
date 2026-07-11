@@ -7,26 +7,32 @@
     {
       "key": "embedded-architecture",
       "icon": "cpu-chip",
-      "title": "Architecture de Systèmes Embarqués",
-      "description": "Conception de systèmes embarqués complets alliant électronique, firmware, capteurs, interfaces de communication et contraintes temps réel. De la spécification technique à l'architecture matérielle/logicielle, avec un focus sur la fiabilité, la maintenabilité et l'intégration sur le terrain."
+      "title": "Architecture de systèmes embarqués",
+      "description": "Conception d'architectures matériel/logiciel pour systèmes robotiques et industriels : microcontrôleurs, capteurs, actionneurs, communications, contraintes temps réel et validation terrain."
     },
     {
       "key": "realtime-firmware",
       "icon": "code-bracket-square",
-      "title": "Développement Firmware Temps Réel",
-      "description": "Développement de firmware en C/C++ sur microcontrôleurs ARM Cortex-M. Gestion des tâches sous RTOS, interruptions, drivers, périphériques et comportement déterministe pour les applications temps réel critiques."
+      "title": "Développement firmware temps réel",
+      "description": "Développement C/C++ sur STM32 et ARM Cortex-M, avec FreeRTOS, gestion multitâche, drivers, interruptions, périphériques et comportement déterministe."
     },
     {
       "key": "electronics-integration",
       "icon": "wrench-screwdriver",
-      "title": "Conception & Intégration Électronique",
-      "description": "Conception et intégration de cartes électroniques : schématique, routage, interfaces capteurs, circuits de puissance et de communication. Validation croisée matériel/logiciel (bring-up) et débogage sur banc d'essai."
+      "title": "Conception et intégration électronique",
+      "description": "Conception de cartes électroniques, choix composants, schématique, routage PCB, bring-up, tests fonctionnels et validation croisée matériel/logiciel."
     },
     {
       "key": "industrial-connectivity",
       "icon": "signal",
-      "title": "Connectivité & Protocoles Industriels",
-      "description": "Implémentation de protocoles de communication filaires et sans fil pour l'échange de données entre microcontrôleurs, capteurs et équipements industriels, dans le strict respect des contraintes de robustesse et de timing."
+      "title": "Connectivité et protocoles industriels",
+      "description": "Intégration UART, SPI, I2C, CAN, UDP, Modbus TCP/RTU, BLE GATT, MQTT et Wi-Fi pour échanges robustes entre capteurs, microcontrôleurs et IHM."
+    },
+    {
+      "key": "embedded-ai-robotics",
+      "icon": "sparkles",
+      "title": "IA embarquée et perception robotique",
+      "description": "Déploiement de modèles CNN sur STM32, traitement d'image OpenCV, suivi de cible couleur et validation d'inférence locale sous contraintes mémoire et temps d'exécution."
     }
   ]
 }

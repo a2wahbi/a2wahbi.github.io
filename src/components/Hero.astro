@@ -37,13 +37,42 @@ const capabilities = [
   { value: 'Électronique', label: 'Conception et tests de cartes électroniques, électronique analogique/numérique, intégration capteurs/actionneurs.' },
 ];
 
-const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
-  label: 'Projet',
-  title: project.title,
-  description: project.description,
-  accent: project.tags[0] ?? 'Projet',
-  image: project.backgroundImage || (project as any).images?.[0] || '',
-}));
+const teaserByProject = new Map([
+  [
+    'Reconnaissance de caractères manuscrits par IA embarquée sur STM32',
+    'Du modèle CNN au déploiement sur microcontrôleur, avec une logique pensée pour les contraintes embarquées.',
+  ],
+  [
+    'Banc de test motorisé avec glissière à vis/écrou',
+    'Automatisation, supervision et validation d’un banc motorisé pour essais mécaniques contrôlés.',
+  ],
+  [
+    'Robot polyvalent autonome',
+    'Architecture robotique distribuée combinant commande temps réel, perception et interface de pilotage.',
+  ],
+  [
+    'Réseau de capteurs & IHM',
+    'Acquisition multi-capteurs, communication CAN et visualisation des données sur interface de supervision.',
+  ],
+  [
+    'Robot mobile',
+    'Prototype mobile associant pilotage distant, acquisition de capteurs et étude cinématique.',
+  ],
+  [
+    'Gestion automatisée de parking (système RFID)',
+    'Contrôle d’accès automatisé avec badge RFID, commande de barrière et affichage temps réel.',
+  ],
+]);
+
+const projectSlides = projectsFile.items
+  .filter((project) => project.featured)
+  .sort((a, b) => (a.sliderOrder ?? 0) - (b.sliderOrder ?? 0))
+  .map((project) => ({
+    label: project.category,
+    title: project.title,
+    teaser: teaserByProject.get(project.title) ?? 'Projet embarqué mené de la conception à la validation technique.',
+    image: project.backgroundImage || (project as any).images?.[0] || '',
+  }));
 ---
 
 <section id="home" class="hero-section" aria-labelledby="hero-title">
@@ -119,15 +148,11 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
       <div
         class="project-carousel"
         role="region"
-        aria-label="Carrousel de présentation des futurs projets"
+        aria-label="Carrousel de présentation des projets techniques"
         aria-roledescription="carrousel"
       >
         <div class="carousel-header">
-          <div>
-            <span class="carousel-eyebrow">Projets</span>
-            <strong>Projets</strong>
-          </div>
-          <span class="carousel-status">CV</span>
+          <strong>Projets</strong>
         </div>
 
         <div class="carousel-viewport">
@@ -154,25 +179,18 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
                       />
                     )}
                     {!slide.image && (
-                      <>
+                      <div class="project-art-summary">
                         <div class="art-grid"></div>
-                        <span class="art-glow art-glow-a"></span>
-                        <span class="art-glow art-glow-b"></span>
-                        <span class="art-line art-line-a"></span>
-                        <span class="art-line art-line-b"></span>
-                        <span class="art-line art-line-c"></span>
-                        <span class="art-node art-node-a"></span>
-                        <span class="art-node art-node-b"></span>
-                        <span class="art-node art-node-c"></span>
-                      </>
+                        <span class="project-art-kicker">Système embarqué</span>
+                        <strong>Conception · Firmware · Validation</strong>
+                      </div>
                     )}
                   </div>
 
                   <div class="project-slide-content">
                     <span class="project-slide-label">{slide.label}</span>
                     <h2>{slide.title}</h2>
-                    <p>{slide.description}</p>
-                    <span class="project-slide-accent">{slide.accent}</span>
+                    <p>{slide.teaser}</p>
                   </div>
                 </article>
               ))
@@ -519,6 +537,7 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
 
   .project-carousel {
     position: relative;
+    max-width: 100%;
     overflow: hidden;
     isolation: isolate;
     border: 1px solid rgba(148, 163, 184, 0.16);
@@ -554,52 +573,44 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
 
   .carousel-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 1.1rem 1.1rem 0;
-  }
-
-  .carousel-eyebrow {
-    display: block;
-    margin-bottom: 0.35rem;
-    color: #38bdf8;
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0;
-    text-transform: uppercase;
+    padding: 1.2rem 1.2rem 0;
   }
 
   .carousel-header strong {
-    color: #f8fafc;
-    font-size: 1rem;
-  }
-
-  .carousel-status {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    flex-shrink: 0;
-    padding: 0.36rem 0.55rem;
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    border-radius: 999px;
-    color: #bae6fd;
-    background: rgba(8, 47, 73, 0.32);
-    font-size: 0.72rem;
-    font-weight: 750;
+    gap: 0.65rem;
+    color: #f8fafc;
+    font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
   }
 
-  .carousel-status::before {
+  .carousel-header strong::before {
     content: '';
-    width: 0.46rem;
-    height: 0.46rem;
-    border-radius: 0.16rem;
+    width: 0.62rem;
+    height: 0.62rem;
+    border-radius: 999px;
     background: #38bdf8;
-    box-shadow: 0 0 12px rgba(56, 189, 248, 0.62);
+    box-shadow:
+      0 0 0 0.34rem rgba(56, 189, 248, 0.12),
+      0 0 22px rgba(56, 189, 248, 0.58);
+  }
+
+  .carousel-header strong::after {
+    content: '';
+    width: 4.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.72), transparent);
   }
 
   .carousel-viewport {
-    overflow: hidden;
+    overflow: clip;
+    contain: paint;
     margin: 1rem;
     border: 1px solid rgba(148, 163, 184, 0.12);
     border-radius: 0.9rem;
@@ -684,6 +695,65 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
     -webkit-mask-image: radial-gradient(circle at 52% 48%, black 0%, transparent 74%);
   }
 
+  .project-art-summary {
+    position: relative;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.7rem;
+    padding: 1.45rem;
+    overflow: hidden;
+  }
+
+  .project-art-summary::before {
+    content: '';
+    position: absolute;
+    inset: auto 1.2rem 1.2rem auto;
+    width: 8.5rem;
+    height: 8.5rem;
+    border: 1px solid rgba(56, 189, 248, 0.16);
+    border-radius: 1.2rem;
+    background:
+      linear-gradient(90deg, transparent 49%, rgba(56, 189, 248, 0.22) 50%, transparent 51%),
+      linear-gradient(0deg, transparent 49%, rgba(52, 211, 153, 0.18) 50%, transparent 51%);
+    opacity: 0.55;
+    transform: rotate(10deg);
+  }
+
+  .project-art-summary::after {
+    content: '';
+    position: absolute;
+    left: 1.45rem;
+    right: 1.45rem;
+    bottom: 1.25rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.48), transparent);
+  }
+
+  .project-art-kicker,
+  .project-art-summary strong {
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-art-kicker {
+    align-self: flex-start;
+    color: #7dd3fc;
+    font-size: 0.72rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-art-summary strong {
+    max-width: 20rem;
+    color: #f8fafc;
+    font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
   .art-glow {
     position: absolute;
     display: block;
@@ -738,37 +808,39 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
   }
 
   .art-node {
+    --art-node-size: 0.62rem;
     position: absolute;
     z-index: 2;
-    width: 0.62rem;
-    height: 0.62rem;
+    width: var(--art-node-size);
+    height: var(--art-node-size);
     border: 2px solid rgba(186, 230, 253, 0.9);
     border-radius: 999px;
     background: #0f172a;
     box-shadow: 0 0 16px rgba(56, 189, 248, 0.58);
+    transform: translate(-50%, -50%);
   }
 
   .art-node-a {
     left: 24%;
-    top: 30%;
+    top: calc(32% + 1px);
   }
 
   .art-node-b {
-    right: 22%;
-    top: 52%;
+    left: 78%;
+    top: calc(54% + 1px);
   }
 
   .art-node-c {
     left: 48%;
-    bottom: 20%;
+    top: calc(78% + 1px);
   }
 
   .project-slide-content {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 0.85rem;
-    padding: 1.25rem;
+    gap: 0.9rem;
+    padding: 1.35rem;
     border-top: 1px solid rgba(148, 163, 184, 0.12);
     background: linear-gradient(180deg, rgba(15, 23, 42, 0.68), rgba(2, 6, 23, 0.86));
   }
@@ -782,26 +854,15 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
   .project-slide h2 {
     margin: 0;
     color: #f8fafc;
-    font-size: 1.45rem;
-    line-height: 1.12;
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    line-height: 1.14;
   }
 
   .project-slide p {
     margin: 0;
     color: #cbd5e1;
     font-size: 0.92rem;
-    line-height: 1.6;
-  }
-
-  .project-slide-accent {
-    align-self: flex-start;
-    padding: 0.42rem 0.6rem;
-    border: 1px solid rgba(56, 189, 248, 0.26);
-    border-radius: 999px;
-    color: #bae6fd;
-    background: rgba(8, 47, 73, 0.3);
-    font-size: 0.72rem;
-    font-weight: 800;
+    line-height: 1.55;
   }
 
   .carousel-controls {
@@ -958,6 +1019,12 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
     color: #0f172a;
   }
 
+  :global([data-theme='light']) .carousel-header strong::before {
+    box-shadow:
+      0 0 0 0.34rem rgba(14, 165, 233, 0.12),
+      0 0 20px rgba(14, 165, 233, 0.36);
+  }
+
   :global([data-theme='light']) .carousel-viewport,
   :global([data-theme='light']) .project-slide,
   :global([data-theme='light']) .project-slide-content {
@@ -972,6 +1039,17 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
       linear-gradient(140deg, rgba(14, 165, 233, 0.16), transparent 38%),
       linear-gradient(320deg, rgba(99, 102, 241, 0.14), transparent 44%),
       #f8fafc;
+  }
+
+  :global([data-theme='light']) .project-art-summary strong {
+    color: #0f172a;
+  }
+
+  :global([data-theme='light']) .project-art-summary::before {
+    border-color: rgba(14, 165, 233, 0.18);
+    background:
+      linear-gradient(90deg, transparent 49%, rgba(14, 165, 233, 0.18) 50%, transparent 51%),
+      linear-gradient(0deg, transparent 49%, rgba(16, 185, 129, 0.12) 50%, transparent 51%);
   }
 
   :global([data-theme='light']) .project-art.has-project-image {
@@ -993,13 +1071,6 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
 
   :global([data-theme='light']) .project-slide p {
     color: #64748b;
-  }
-
-  :global([data-theme='light']) .carousel-status,
-  :global([data-theme='light']) .project-slide-accent {
-    color: #0369a1;
-    border-color: rgba(14, 165, 233, 0.22);
-    background: rgba(224, 242, 254, 0.72);
   }
 
   :global([data-theme='light']) .art-node {
@@ -1052,6 +1123,11 @@ const projectSlides = projectsFile.items.slice(0, 3).map((project) => ({
     .hero-section {
       min-height: auto;
       padding: 6.75rem 0 3rem;
+    }
+
+    .hero-circuit-lines,
+    .signal-wave {
+      display: none;
     }
 
     .hero-title {

@@ -15,28 +15,31 @@
       ]
     },
     {
-      "title": "Logiciel embarqué",
-      "text": "Logiciel embarqué : Embedded Linux, multicœurs ARM, FreeRTOS, ROS 2, gestion multitâche.",
+      "title": "Firmware temps réel",
+      "text": "Firmware temps réel : FreeRTOS, Embedded Linux, multicœurs ARM, ROS 2/Micro-ROS, gestion multitâche.",
       "skills": [
+        { "name": "FreeRTOS", "icon": "lucide:timer" },
         { "name": "Embedded Linux", "icon": "simple-icons:linux" },
         { "name": "multicœurs ARM", "icon": "simple-icons:arm" },
-        { "name": "FreeRTOS", "icon": "lucide:timer" },
-        { "name": "ROS 2", "icon": "lucide:network" },
+        { "name": "ROS 2 / Micro-ROS", "icon": "lucide:network" },
         { "name": "gestion multitâche", "icon": "lucide:blocks" }
       ]
     },
     {
       "title": "Électronique",
-      "text": "Électronique : Conception et tests de cartes électroniques, électronique analogique/numérique, intégration capteurs/actionneurs.",
+      "text": "Électronique : conception de cartes, routage PCB, tests, validation, électronique analogique/numérique, capteurs/actionneurs.",
       "skills": [
-        { "name": "Conception et tests de cartes électroniques", "icon": "lucide:circuit-board" },
-        { "name": "électronique analogique/numérique", "icon": "lucide:activity" },
-        { "name": "intégration capteurs/actionneurs", "icon": "lucide:cable" }
+        { "name": "Conception de cartes électroniques", "icon": "lucide:circuit-board" },
+        { "name": "Routage PCB", "icon": "lucide:layers-3" },
+        { "name": "Tests unitaires et fonctionnels", "icon": "lucide:test-tube" },
+        { "name": "Validation cartes", "icon": "lucide:clipboard-check" },
+        { "name": "Électronique analogique/numérique", "icon": "lucide:activity" },
+        { "name": "Capteurs/actionneurs", "icon": "lucide:cable" }
       ]
     },
     {
       "title": "Protocoles",
-      "text": "Protocoles : UART, SPI, I2C, CAN, Modbus TCP/RTU, BLE GATT , MQTT , UDP, Wi-Fi.",
+      "text": "Protocoles : UART, SPI, I2C, CAN, UDP, Modbus TCP/RTU, BLE GATT, MQTT, Wi-Fi.",
       "skills": [
         { "name": "UART", "icon": "lucide:cable" },
         { "name": "SPI", "icon": "lucide:cable" },
@@ -50,14 +53,27 @@
       ]
     },
     {
-      "title": "Microcontrôleurs et platformes",
-      "text": "Microcontrôleurs et platformes : STM32, Raspberry Pi, Arduino, Silicon Labs, ESP32.",
+      "title": "Microcontrôleurs et plateformes",
+      "text": "Microcontrôleurs et plateformes : STM32H7/F4/F767, STM32 Nucleo, BGM240P, Raspberry Pi, Arduino, ESP32.",
       "skills": [
-        { "name": "STM32", "icon": "lucide:microchip" },
+        { "name": "STM32H7 / STM32F4 / STM32F767", "icon": "lucide:microchip" },
+        { "name": "STM32 Nucleo F103/F411", "icon": "lucide:microchip" },
+        { "name": "Silicon Labs BGM240P", "icon": "lucide:bluetooth" },
         { "name": "Raspberry Pi", "icon": "simple-icons:raspberrypi" },
         { "name": "Arduino", "icon": "simple-icons:arduino" },
-        { "name": "Silicon Labs", "icon": "lucide:bluetooth" },
         { "name": "ESP32", "icon": "simple-icons:espressif" }
+      ]
+    },
+    {
+      "title": "IA embarquée, vision et IHM",
+      "text": "IA embarquée, vision et IHM : TensorFlow, OpenCV, STM32Cube.AI, X-CUBE-AI, PyQt/Qt, traitement d'image, IHM PC.",
+      "skills": [
+        { "name": "TensorFlow", "icon": "lucide:cpu" },
+        { "name": "OpenCV", "icon": "lucide:activity" },
+        { "name": "STM32Cube.AI / X-CUBE-AI", "icon": "lucide:microchip" },
+        { "name": "PyQt / Qt", "icon": "simple-icons:python" },
+        { "name": "Traitement d'image", "icon": "lucide:audio-waveform" },
+        { "name": "IHM PC", "icon": "lucide:terminal" }
       ]
     },
     {
@@ -75,14 +91,18 @@
       ]
     },
     {
-      "title": "CAO et outils de simulation",
-      "text": "CAO et outils de simulation : KiCad, Altium, Eagle, LTspice, PSpice.",
+      "title": "CAO, simulation et automatisme",
+      "text": "CAO, simulation et automatisme : KiCad, Altium, Eagle, LTspice, PSpice, AutoCAD, CATIA V5, SCILAB, Unistream/LADDER.",
       "skills": [
         { "name": "KiCad", "icon": "simple-icons:kicad" },
         { "name": "Altium", "icon": "lucide:layers-3" },
         { "name": "Eagle", "icon": "lucide:circuit-board" },
         { "name": "LTspice", "icon": "lucide:activity" },
-        { "name": "PSpice", "icon": "lucide:activity" }
+        { "name": "PSpice", "icon": "lucide:activity" },
+        { "name": "AutoCAD", "icon": "lucide:layers-3" },
+        { "name": "CATIA V5", "icon": "lucide:layers-3" },
+        { "name": "SCILAB", "icon": "lucide:terminal" },
+        { "name": "Unistream / LADDER", "icon": "lucide:blocks" }
       ]
     }
   ]

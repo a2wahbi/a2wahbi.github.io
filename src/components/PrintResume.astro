@@ -3,9 +3,11 @@ import personal from '../data/personal.json';
 import skillsData from '../data/skills.json';
 import projectsFile from '../data/projects.json';
 import resumeData from '../data/resume.json';
+import certificationsData from '../data/certifications.json';
 
 const skillCategories = skillsData.categories as Array<{ title: string; text?: string; skills: Array<{ name: string }> }>;
 const resumeProjects = projectsFile.items.filter((p) => (p as any).resume);
+const certifications = certificationsData.slice(0, 3);
 ---
 
 <div class="print-only" id="resume-print">
@@ -97,6 +99,10 @@ const resumeProjects = projectsFile.items.filter((p) => (p as any).resume);
     <section class="resume-section">
       <h2 class="section-title">Langues</h2>
       <p class="body-text">{resumeData.languages.join(' · ')}</p>
+      <h2 class="section-title section-title-inline">Certifications</h2>
+      <p class="body-text">
+        {certifications.map((cert) => `${cert.name} - ${cert.issuer}`).join(' · ')}
+      </p>
       <h2 class="section-title section-title-inline">Centres d’intérêt</h2>
       <p class="body-text">{resumeData.interests.join(' · ')}</p>
     </section>

@@ -1,6 +1,6 @@
 {
-  "title": "WAHBI Amine | Ingénieur en Électronique et Systèmes embarqués",
-  "description": "Diplômé de l'ENIB et actuellement en CDI en tant qu'ingénieur en électronique et systèmes embarqués, je dispose d’une solide expérience en conception électronique et développement logiciel embarqué, acquise au cours de mon parcours professionnel et de plusieurs projets techniques réalisés. Curieux et motivé, je suis à l'écoute de nouvelles opportunités dans ce domaine à partir de septembre 2026.",
+  "title": "WAHBI Amine | Ingénieur Électronique et Systèmes Embarqués",
+  "description": "Ingénieur électronique et systèmes embarqués diplômé de l'ENIB, spécialisé en firmware C/FreeRTOS sur STM32, conception électronique, robotique autonome, protocoles industriels, IA embarquée et validation système.",
   "ogSiteName": "Portfolio WAHBI Amine",
   "shortName": "WAHBI",
   "tagline": "Électronique & Systèmes Embarqués",
@@ -14,9 +14,16 @@
   },
   "retroTvCount": 21,
   "seoKeywords": [
-    "Ingénieur en Électronique et Systèmes embarqués",
+    "Ingénieur Électronique et Systèmes Embarqués",
     "Conception électronique",
     "Développement logiciel embarqué",
+    "Firmware temps réel",
+    "Robotique autonome",
+    "IA embarquée",
+    "STM32Cube.AI",
+    "X-CUBE-AI",
+    "TensorFlow",
+    "OpenCV",
     "C",
     "C++",
     "Python",
@@ -40,11 +47,16 @@
     "MQTT",
     "UDP",
     "Wi-Fi",
+    "BGM240P",
     "KiCad",
     "Altium",
     "Eagle",
     "LTspice",
-    "PSpice"
+    "PSpice",
+    "AutoCAD",
+    "CATIA V5",
+    "SCILAB",
+    "LADDER"
   ],
   "navExternal": [
     {
@@ -74,8 +86,8 @@
     {
       "label": "Téléphone",
       "desc": "Disponible sur rendez-vous",
-      "personalKey": "phone",
-      "urlTemplate": "tel:{value}"
+      "personalKey": "phoneTel",
+      "urlTemplate": "{value}"
     }
   ],
   "serviceSites": [
@@ -89,7 +101,7 @@
       "iconType": "web",
       "name": "GitHub",
       "url": "https://github.com/a2wahbi",
-      "description": "Espace public pour consulter mes dépôts, prototypes, expérimentations et travaux liés au développement logiciel, à l’embarqué et à l’évolution de ce portfolio.",
+      "description": "Espace public pour consulter mes dépôts, prototypes, expérimentations et travaux liés au développement embarqué, à la robotique et à l'évolution de ce portfolio.",
       "features": [
         "Prototypes et projets personnels",
         "Code source du portfolio",
@@ -107,7 +119,7 @@
       "iconType": "server",
       "name": "LinkedIn",
       "url": "https://linkedin.com/in/ahmed-amine-wahbi-31787b257",
-      "description": "Profil professionnel, parcours, expériences et réseau. Point d’entrée adapté pour les opportunités d’ingénierie électronique, systèmes embarqués et robotique.",
+      "description": "Profil professionnel, parcours, expériences et réseau. Point d'entrée adapté pour les opportunités en ingénierie électronique, systèmes embarqués et robotique.",
       "features": [
         "Parcours et expériences",
         "Réseau professionnel",

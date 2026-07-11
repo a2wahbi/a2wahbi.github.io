@@ -76,33 +76,59 @@ const experiences = resumeData.experiences as ExperienceItem[];
   }
 
   .experience-timeline {
+    --timeline-marker-column: 1.25rem;
+    --timeline-marker-size: 0.75rem;
+    --timeline-end-size: 0.58rem;
+    --timeline-line-width: 1px;
+    --timeline-line-x: calc((var(--timeline-marker-column) - var(--timeline-line-width)) / 2);
+    --timeline-marker-x: calc((var(--timeline-marker-column) - var(--timeline-marker-size)) / 2);
+    --timeline-end-x: calc((var(--timeline-marker-column) - var(--timeline-end-size)) / 2);
     position: relative;
     display: grid;
     gap: 1.2rem;
+    padding-bottom: 1rem;
   }
 
   .experience-timeline::before {
     content: '';
     position: absolute;
-    top: 0.6rem;
-    bottom: 0.6rem;
-    left: 0.55rem;
-    width: 1px;
-    background: linear-gradient(180deg, rgba(14, 165, 233, 0.55), rgba(99, 102, 241, 0.15));
+    top: calc(1.45rem + (var(--timeline-marker-size) / 2));
+    bottom: calc(var(--timeline-end-size) / 2);
+    left: var(--timeline-line-x);
+    width: var(--timeline-line-width);
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.62), rgba(99, 102, 241, 0.15));
+  }
+
+  .experience-timeline::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    left: var(--timeline-end-x);
+    bottom: 0;
+    width: var(--timeline-end-size);
+    height: var(--timeline-end-size);
+    border: 1px solid rgba(56, 189, 248, 0.62);
+    border-radius: 999px;
+    background: #020617;
+    box-shadow:
+      0 0 0 5px rgba(56, 189, 248, 0.08),
+      0 0 18px rgba(56, 189, 248, 0.28);
   }
 
   .experience-item {
     position: relative;
     display: grid;
-    grid-template-columns: 1.1rem minmax(0, 1fr);
+    grid-template-columns: var(--timeline-marker-column) minmax(0, 1fr);
     gap: 1.2rem;
   }
 
   .experience-marker {
     position: relative;
     z-index: 1;
-    width: 0.75rem;
-    height: 0.75rem;
+    justify-self: start;
+    width: var(--timeline-marker-size);
+    height: var(--timeline-marker-size);
+    margin-left: var(--timeline-marker-x);
     margin-top: 1.45rem;
     border-radius: 999px;
     background: #38bdf8;
@@ -193,6 +219,10 @@ const experiences = resumeData.experiences as ExperienceItem[];
     background: var(--bg-card);
     border-color: rgba(99, 102, 241, 0.14);
     box-shadow: 0 16px 42px rgba(15, 23, 42, 0.08);
+  }
+
+  :global([data-theme='light']) .experience-timeline::after {
+    background: #f8fafc;
   }
 
   @media (max-width: 640px) {

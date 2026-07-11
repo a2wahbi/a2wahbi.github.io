@@ -15,7 +15,13 @@ const projectsData = projectsFile.items;
     <div class="projects-list">
       {
         projectsData.map((project, index) => {
-          const hasImages = Boolean(project.backgroundImage && (project as any).images?.length);
+          const projectImages = ((project as any).images ?? []).filter(Boolean);
+          const hasImages = Boolean(project.backgroundImage && projectImages.length);
+          const hasGallery = projectImages.length > 1;
+          const imageFit = (project as any).imageFit;
+          const imageAlt = (project as any).imageAlt ?? `Image du projet ${project.title}`;
+          const imageAlts = ((project as any).imageAlts ?? []) as string[];
+          const imageCredit = (project as any).imageCredit;
           const projectLink = project.link ? withBase(project.link) : '';
           const isExternalLink = /^https?:\/\//i.test(project.link);
           const ctaLabel = project.link.includes('github.com') ? 'Voir sur GitHub'
@@ -25,32 +31,47 @@ const projectsData = projectsFile.items;
           const projectDetails = ((project as any).details?.length ? (project as any).details : (project as any).highlights) ?? [];
 
           return (
-            <article class={`project-feature reveal visible ${hasImages ? '' : 'project-feature--compact'}`} data-index={index}>
+            <article class={`project-feature reveal visible ${hasImages ? '' : 'project-feature--compact'} ${imageFit === 'contain' ? 'project-feature--image-contain' : ''}`} data-index={index}>
               <div class="project-art">
                 {hasImages ? (
                   <>
                     <img
                       class="project-main-image"
                       src={withBase(project.backgroundImage!)}
-                      alt={`${project.title} screenshot`}
+                      alt={imageAlt}
                       loading="lazy"
                       width="900"
                       height="560"
                     />
                     <div class="project-art-overlay" />
-                    <div class="project-shots">
-                      {(project as any).images?.slice(0, 3).map((image: string, i: number) => (
-                        <button
-                          type="button"
-                          class={`project-shot-button ${image === project.backgroundImage ? 'active' : ''}`}
-                          data-gallery={String(index)}
-                          data-image={withBase(image)}
-                          aria-label={`Show ${project.title} screenshot ${i + 1}`}
-                        >
-                          <img src={withBase(image)} alt="" loading="lazy" width="160" height="90" />
-                        </button>
-                      ))}
-                    </div>
+                    {imageCredit?.url && (
+                      <a
+                        class="project-image-credit"
+                        href={imageCredit.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={`${imageCredit.label} - ${imageCredit.author} - ${imageCredit.license}`}
+                        aria-label={`${imageCredit.label} - ${imageCredit.author} - ${imageCredit.license}`}
+                      >
+                        {imageCredit.label}
+                      </a>
+                    )}
+                    {hasGallery && (
+                      <div class="project-shots">
+                        {projectImages.slice(0, 3).map((image: string, i: number) => (
+                          <button
+                            type="button"
+                            class={`project-shot-button ${image === project.backgroundImage ? 'active' : ''}`}
+                            data-gallery={String(index)}
+                            data-image={withBase(image)}
+                            data-alt={imageAlts[i] ?? imageAlt}
+                            aria-label={`Afficher l'image ${i + 1} du projet ${project.title}`}
+                          >
+                            <img src={withBase(image)} alt="" loading="lazy" width="160" height="90" />
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </>
                 ) : (
                   <div class="project-code-art" aria-hidden="true">
@@ -117,11 +138,13 @@ const projectsData = projectsFile.items;
   shotButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const nextImage = button.dataset.image;
+      const nextAlt = button.dataset.alt;
       const projectCard = button.closest('.project-feature');
       const mainImage = projectCard?.querySelector<HTMLImageElement>('.project-main-image');
       if (!mainImage || !nextImage || !projectCard) return;
 
       mainImage.src = nextImage;
+      if (nextAlt) mainImage.alt = nextAlt;
       projectCard.querySelectorAll('.project-shot-button').forEach((item) => item.classList.remove('active'));
       button.classList.add('active');
     });
@@ -232,15 +255,66 @@ const projectsData = projectsFile.items;
       filter 0.5s ease;
   }
 
+  .project-feature--image-contain .project-art {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.12), transparent 34%),
+      linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(2, 6, 23, 0.9));
+  }
+
+  .project-feature--image-contain .project-art > img {
+    object-fit: contain;
+    padding: 1.4rem;
+    background: rgba(248, 250, 252, 0.95);
+    filter: saturate(1.05) brightness(0.9);
+    transform: none;
+  }
+
   .project-feature:hover .project-art > img {
     transform: scale(1.09);
     filter: saturate(1.3) brightness(0.82);
+  }
+
+  .project-feature--image-contain:hover .project-art > img {
+    transform: none;
+    filter: saturate(1.08) brightness(0.94);
   }
 
   .project-art-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(90deg, rgba(2, 6, 23, 0.08), rgba(2, 6, 23, 0.72));
+  }
+
+  .project-image-credit {
+    position: absolute;
+    left: 0.9rem;
+    bottom: 0.9rem;
+    z-index: 3;
+    max-width: calc(100% - 1.8rem);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(2, 6, 23, 0.68);
+    color: rgba(226, 232, 240, 0.86);
+    padding: 0.34rem 0.7rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .project-image-credit:hover {
+    color: #ffffff;
+    border-color: rgba(52, 211, 153, 0.56);
+    background: rgba(15, 23, 42, 0.86);
   }
 
   .project-shots {
@@ -446,6 +520,15 @@ const projectsData = projectsFile.items;
     background: rgba(99, 102, 241, 0.08);
     border-color: rgba(99, 102, 241, 0.2);
   }
+  :global([data-theme='light']) .project-feature--image-contain .project-art {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(14, 165, 233, 0.08), transparent 34%),
+      rgba(241, 245, 249, 0.88);
+  }
+  :global([data-theme='light']) .project-feature--image-contain .project-art > img {
+    background: rgba(255, 255, 255, 0.96);
+    filter: saturate(1) brightness(0.96);
+  }
   :global([data-theme='light']) .project-eyebrow {
     color: #059669;
   }
@@ -463,6 +546,11 @@ const projectsData = projectsFile.items;
   :global([data-theme='light']) .project-shot-button {
     background: rgba(241, 245, 249, 0.85);
     border-color: rgba(148, 163, 184, 0.3);
+  }
+  :global([data-theme='light']) .project-image-credit {
+    background: rgba(248, 250, 252, 0.76);
+    border-color: rgba(15, 23, 42, 0.12);
+    color: #334155;
   }
   :global([data-theme='light']) .project-shot-button:hover,
   :global([data-theme='light']) .project-shot-button.active {

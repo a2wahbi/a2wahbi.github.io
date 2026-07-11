@@ -7,6 +7,12 @@
       "desc": "Parcours, profil et approche technique"
     },
     {
+      "label": "Expertise",
+      "shortLabel": "Expertise",
+      "href": "#expertise",
+      "desc": "Domaines d'intervention et valeur technique"
+    },
+    {
       "label": "Expériences professionnelles",
       "shortLabel": "Expériences",
       "href": "#experience",
@@ -23,6 +29,12 @@
       "shortLabel": "Projets",
       "href": "#projects",
       "desc": "Projets personnels, prototypes et expérimentations"
+    },
+    {
+      "label": "Certifications",
+      "shortLabel": "Certifications",
+      "href": "#certifications",
+      "desc": "Certifications et formations techniques validées"
     },
     {
       "label": "Formation",

@@ -2,25 +2,99 @@
   "layout": "showcase",
   "items": [
     {
+      "title": "Reconnaissance de caractères manuscrits par IA embarquée sur STM32",
+      "featured": true,
+      "resume": true,
+      "company": "Projet ENIB | mars 2025 - juin 2025",
+      "category": "IA embarquée",
+      "description": "Système de reconnaissance de caractères manuscrits basé sur un modèle CNN embarqué sur STM32F767. Objectif : valider l'inférence IA directement sur microcontrôleur, sous contraintes mémoire, performance et temps d'exécution.",
+      "highlights": [
+        "Création et entraînement d'un modèle CNN sur le dataset EMNIST.",
+        "Optimisation et quantification du modèle pour une cible STM32.",
+        "Intégration de l'inférence temps réel via X-CUBE-AI sur STM32F767.",
+        "Prétraitement image, inférence et communication UART exécutés sur microcontrôleur.",
+        "Résultat mesuré : environ 26 ms d'inférence pour une image 28 x 28 px."
+      ],
+      "details": [
+        "Pipeline IA complet : dataset EMNIST, modèle CNN, entraînement Python/TensorFlow et quantification pour cible embarquée.",
+        "Déploiement STM32 : génération X-CUBE-AI, intégration STM32CubeIDE, exécution sur STM32F767 et communication UART.",
+        "Valeur ajoutée : démonstration d'une IA embarquée fonctionnelle sans dépendance cloud, avec inférence validée à environ 26 ms par image."
+      ],
+      "tags": ["Python", "TensorFlow", "OpenCV", "STM32F767", "X-CUBE-AI", "STM32Cube.AI", "UART", "CNN", "EMNIST"],
+      "icon": "cpu-chip",
+      "sliderImage": "",
+      "sliderOrder": 2,
+      "backgroundImage": "/images/projects/ia-embarquee-stm32-pipeline.png",
+      "images": [
+        "/images/projects/ia-embarquee-stm32-pipeline.png",
+        "/images/projects/ia-embarquee-pretraitement-image.png",
+        "/images/projects/ia-embarquee-integration-stm32f767.png"
+      ],
+      "imageFit": "contain",
+      "imageAlt": "Schéma de pipeline du projet IA embarquée : acquisition webcam, prétraitement OpenCV, liaison UART, inférence CNN sur STM32Cube.AI et affichage du chiffre reconnu",
+      "imageAlts": [
+        "Schéma de pipeline du projet IA embarquée : acquisition webcam, prétraitement OpenCV, liaison UART, inférence CNN sur STM32Cube.AI et affichage du chiffre reconnu",
+        "Chaîne de prétraitement d'image pour reconnaissance manuscrite : niveaux de gris, redimensionnement, seuillage adaptatif, extraction du composant principal, centrage, dilatation et passage en 28 x 28 pixels",
+        "Schéma d'intégration STM32F767 : réception UART, copie de l'image dans le tampon d'entrée IA, appel du modèle, lecture de sortie, recherche de classe probable, conversion ASCII et transmission du caractère prédit"
+      ],
+      "link": "",
+      "colorIcon": "",
+      "githubRepo": ""
+    },
+    {
+      "title": "Banc de test motorisé avec glissière à vis/écrou",
+      "featured": true,
+      "resume": true,
+      "company": "Projet ENIB | octobre 2024 - janvier 2025",
+      "category": "Automatisme",
+      "description": "Banc de test automatisé permettant le déplacement contrôlé d'une charge jusqu'à 10 kg. Le système combine automate Unistream, IHM PC, capteurs analogiques, codeur incrémental et suivi des paramètres électriques.",
+      "highlights": [
+        "Programmation d'un automate Unistream 5 PRO en langage LADDER.",
+        "Développement d'une IHM PC pour pilotage, surveillance et synchronisation système.",
+        "Intégration de mesures tension/courant et d'un codeur incrémental pour la vitesse.",
+        "Dimensionnement moteur selon plusieurs profils de charge jusqu'à 10 kg.",
+        "Validation technique du banc en conditions réelles."
+      ],
+      "details": [
+        "Architecture automatisme : automate Unistream, IHM automate, IHM PC, variateur de vitesse, capteurs analogiques et codeur incrémental.",
+        "Pilotage et supervision : programmation LADDER, suivi des mesures électriques, contrôle vitesse et synchronisation automate/IHM.",
+        "Valeur ajoutée : banc validé pour charge jusqu'à 10 kg, livré et démontré en conditions réelles."
+      ],
+      "tags": ["Automate Unistream", "LADDER", "IHM PC", "Modbus", "Codeur incrémental", "Variateur", "Capteurs analogiques", "Oscilloscope"],
+      "icon": "adjustments-horizontal",
+      "sliderImage": "",
+      "sliderOrder": 3,
+      "backgroundImage": "/images/projects/banc-test-glissiere-unitronics.png",
+      "images": [
+        "/images/projects/banc-test-glissiere-unitronics.png"
+      ],
+      "imageFit": "contain",
+      "imageAlt": "Interface IHM Unitronics utilisée comme visuel pour le banc de test motorisé avec glissière à vis/écrou",
+      "link": "",
+      "colorIcon": "",
+      "githubRepo": ""
+    },
+    {
       "title": "Robot polyvalent autonome",
       "featured": true,
       "resume": true,
-      "company": "",
-      "category": "Projets",
-      "description": "Système robotique distribué entre un PC Hôte, un Raspberry Pi et une STM32 Nucleo F411, conçu pour piloter un robot mobile en modes Manuel, Aléatoire et Tracking.",
+      "company": "Projet ENIB | septembre 2023 - janvier 2024",
+      "category": "Robotique",
+      "description": "Robot mobile polyvalent pilotable à distance via une IHM Python/PyQt, avec commande manuelle, navigation autonome avec évitement d'obstacles et suivi d'une cible couleur par caméra.",
       "highlights": [
-        "Développement en C sous FreeRTOS sur STM32 Nucleo F411 pour la commande bas niveau du robot.",
-        "Implémentation de la boucle d’asservissement en vitesse des moteurs à courant continu.",
-        "Acquisition des capteurs de distance Laser et Infrarouge pour la détection d’obstacles.",
-        "Développement d’une IHM PyQt sur PC Hôte pour la sélection des modes, l’affichage de la télémétrie et l’échange de messages via ROS2."
+        "Développement C/FreeRTOS sur STM32F411 pour la commande bas niveau.",
+        "Asservissement en vitesse de moteurs DC à partir de codeurs incrémentaux.",
+        "Acquisition et traitement des capteurs de distance pour l'évitement d'obstacles.",
+        "Intégration Raspberry Pi pour caméra, traitement d'image et communication PC hôte.",
+        "Prototype validé avec trois modes : manuel, autonome et suivi de cible couleur."
       ],
       "details": [
-        "Contrôle embarqué : Développement en C sous FreeRTOS sur STM32 Nucleo F411 pour la commande bas niveau du robot.",
-        "Asservissement moteur : Implémentation de la boucle d’asservissement en vitesse des moteurs à courant continu.",
-        "Perception embarquée : Acquisition des capteurs de distance Laser et Infrarouge pour la détection d’obstacles.",
-        "Supervision et communication : Développement d’une IHM PyQt sur PC Hôte pour la sélection des modes, l’affichage de la télémétrie et l’échange de messages via ROS2 avec le Raspberry Pi et la STM32."
+        "Contrôle embarqué : firmware C sous FreeRTOS sur STM32F411 pour tâches temps réel, capteurs et commande moteur.",
+        "Supervision : IHM Python/PyQt pour sélection des modes, visualisation des données capteurs et pilotage du robot.",
+        "Perception : Raspberry Pi, OpenCV et communication avec PC hôte pour suivi de cible couleur.",
+        "Valeur ajoutée : architecture distribuée PC/Raspberry Pi/STM32 validant commande, autonomie et perception robotique."
       ],
-      "tags": ["C", "FreeRTOS", "STM32 Nucleo F411", "Raspberry Pi", "PyQt", "ROS2", "Traitement d’image", "Capteurs Laser", "Capteurs Infrarouge", "Asservissement moteur"],
+      "tags": ["C", "Python", "PyQt", "FreeRTOS", "STM32F411", "Raspberry Pi", "ROS2/Micro-ROS", "OpenCV", "PWM", "ADC", "UART"],
       "icon": "cpu-chip",
       "sliderImage": "",
       "sliderOrder": 1,
@@ -38,16 +112,25 @@
       "title": "Réseau de capteurs & IHM",
       "featured": true,
       "resume": true,
-      "company": "",
-      "category": "Projets",
-      "description": "Récupération de données de plusieurs capteurs et affichage sur IHM.",
+      "company": "Projet ENIB | septembre 2023 - janvier 2024",
+      "category": "Systèmes embarqués",
+      "description": "Réseau de capteurs embarqués basé sur plusieurs cartes STM32 Nucleo, avec acquisition de mesures physiques, transmission par bus CAN et affichage sur IHM PC.",
       "highlights": [
-        "Transmission vers un PC hôte via bus CAN."
+        "Architecture distribuée avec plusieurs cartes STM32 Nucleo connectées à un bus CAN.",
+        "Acquisition de mesures de luminosité, distance, pression, humidité, vitesse du vent et centrale inertielle.",
+        "Intégration de capteurs I2C : VL6180X, LPS22HB, HTS221 et MPU9250.",
+        "Encapsulation des mesures dans des trames CAN transmises au PC hôte.",
+        "Affichage IHM des données capteurs et visualisation 3D de l'orientation MPU9250."
       ],
-      "tags": ["IHM", "CAN"],
+      "details": [
+        "Acquisition multi-capteurs : luminosité, distance, pression, humidité, vent et inertiel sur STM32 Nucleo.",
+        "Communication : bus CAN pour centraliser les mesures, avec capteurs I2C et échanges UART selon les modules.",
+        "Valeur ajoutée : prototype fonctionnel de collecte, transmission et visualisation de données physiques distribuées."
+      ],
+      "tags": ["C", "STM32 Nucleo F103", "STM32CubeIDE", "CAN", "I2C", "UART", "Qt", "VL6180X", "LPS22HB", "HTS221", "MPU9250"],
       "icon": "signal",
       "sliderImage": "",
-      "sliderOrder": 2,
+      "sliderOrder": 4,
       "backgroundImage": "/images/projects/reseau-capteurs-ihm-1.png",
       "images": [
         "/images/projects/reseau-capteurs-ihm-1.png",
@@ -61,20 +144,31 @@
       "title": "Robot mobile",
       "featured": true,
       "resume": true,
-      "company": "",
-      "category": "Projets",
-      "description": "Création d’une IHM de contrôle du robot à distance.",
+      "company": "Projet GEII | janvier 2023 - juin 2023",
+      "category": "Robotique",
+      "description": "Prototype de robot mobile avec IHM de contrôle à distance, acquisition de capteurs temps réel, modélisation mécanique et étude cinématique.",
       "highlights": [
-        "Intégration des communications UART, I2C et SPI pour capteurs temps réel.",
+        "Création d'une IHM de contrôle à distance.",
+        "Intégration des communications UART, I2C et SPI pour les capteurs temps réel.",
         "Modélisation mécanique du robot sous CATIA V5.",
-        "Étude cinématique et simulations sous SCILAB."
+        "Étude cinématique et simulations sous SCILAB.",
+        "Validation d'un prototype fonctionnel pour pilotage et acquisition de données capteurs."
       ],
-      "tags": ["UART", "I2C", "SPI", "CATIA V5", "SCILAB"],
+      "details": [
+        "Développement embarqué : STM32, acquisition capteurs et communication série.",
+        "Interface : IHM Python/Tkinter pour contrôle à distance et affichage des données.",
+        "Valeur ajoutée : validation conjointe de la conception mécanique, de la cinématique et du pilotage embarqué."
+      ],
+      "tags": ["C", "Python", "Tkinter", "STM32", "UART", "I2C", "SPI", "CATIA V5", "SCILAB"],
       "icon": "cog-6-tooth",
       "sliderImage": "",
-      "sliderOrder": 3,
-      "backgroundImage": "",
-      "images": [],
+      "sliderOrder": 5,
+      "backgroundImage": "/images/projects/robot-mobile-architecture-motorisation.png",
+      "images": [
+        "/images/projects/robot-mobile-architecture-motorisation.png"
+      ],
+      "imageFit": "contain",
+      "imageAlt": "Schéma d'architecture du robot mobile : moteurs, encodeurs, roues, carte STM32, processeur, modules XBee, liaison UART et interface de pilotage",
       "link": "",
       "colorIcon": "",
       "githubRepo": ""
@@ -83,18 +177,31 @@
       "title": "Gestion automatisée de parking (système RFID)",
       "featured": true,
       "resume": true,
-      "company": "",
-      "category": "Projets",
-      "description": "Développement d'un système automatisé de gestion de parking utilisant la technologie RFID.",
+      "company": "Projet GEII | février 2022 - août 2022",
+      "category": "Automatisation",
+      "description": "Système automatisé de gestion de parking basé sur la lecture de badges RFID, la commande de barrière et l'affichage en temps réel des places disponibles.",
       "highlights": [
-        "Programmation Arduino pour contrôle automatisé des entrées/sorties de véhicules."
+        "Conception d'un contrôle d'accès véhicule basé sur badges RFID.",
+        "Programmation Arduino pour gestion des entrées/sorties et calcul des places disponibles.",
+        "Pilotage d'un servomoteur pour ouverture et fermeture automatique de la barrière.",
+        "Affichage temps réel de l'état du parking sur écran LCD.",
+        "Système opérationnel et projet validé avec succès."
       ],
-      "tags": ["RFID", "Arduino"],
+      "details": [
+        "Automatisation : Arduino, RFID, servomoteur, écran LCD et capteurs/actionneurs.",
+        "Logique applicative : mise à jour du nombre de places disponibles et gestion de l'état du parking.",
+        "Valeur ajoutée : démonstrateur opérationnel de contrôle d'accès automatisé."
+      ],
+      "tags": ["Arduino", "C/C++", "RFID", "Servomoteur", "LCD", "Capteurs", "Actionneurs", "Arduino IDE"],
       "icon": "adjustments-horizontal",
       "sliderImage": "",
-      "sliderOrder": 4,
-      "backgroundImage": "",
-      "images": [],
+      "sliderOrder": 6,
+      "backgroundImage": "/images/projects/parking-rfid-composants.png",
+      "images": [
+        "/images/projects/parking-rfid-composants.png"
+      ],
+      "imageFit": "contain",
+      "imageAlt": "Composants du système de parking RFID : Arduino UNO, capteurs infrarouges, servomoteur, lecteur RFID RC522, LEDs, breadboard, fils Dupont et badges RFID",
       "link": "",
       "colorIcon": "",
       "githubRepo": ""

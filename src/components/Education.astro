@@ -5,6 +5,7 @@ type EducationItem = {
   title: string;
   school: string;
   period: string;
+  description?: string;
 };
 
 const education = resumeData.education as EducationItem[];
@@ -32,6 +33,7 @@ const interests = resumeData.interests as string[];
               <article>
                 <h4>{item.title}</h4>
                 <p>{item.school}</p>
+                {item.description && <p class="education-description">{item.description}</p>}
                 <span>{item.period}</span>
               </article>
             ))
@@ -138,6 +140,11 @@ const interests = resumeData.interests as string[];
     font-size: 0.9rem;
     font-style: italic;
     line-height: 1.45;
+  }
+
+  .education-list .education-description {
+    font-style: normal;
+    color: var(--text-dim);
   }
 
   .education-list span {

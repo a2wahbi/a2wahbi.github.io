@@ -4,7 +4,7 @@ import menu from '../data/menu.json';
 import siteData from '../data/site.json';
 
 const { sections } = menu;
-const headerSectionOrder = ['#about', '#experience', '#skills', '#projects', '#education', '#contact'];
+const headerSectionOrder = ['#about', '#expertise', '#experience', '#skills', '#projects', '#certifications', '#education', '#contact'];
 const headerSections = headerSectionOrder
   .map((href) => sections.find((section) => section.href === href))
   .filter(Boolean) as typeof sections;
@@ -15,6 +15,7 @@ const externalIconByKey: Record<string, string> = {
   email: 'lucide:mail',
   blog: 'lucide:file-text',
   phone: 'lucide:phone',
+  phoneTel: 'lucide:phone',
 };
 
 // Build external nav links from site.json definitions, skipping any whose personal.json key is empty.
