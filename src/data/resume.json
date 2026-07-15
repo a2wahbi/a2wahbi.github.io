@@ -56,13 +56,13 @@
       "title": "Diplôme d’ingénieur - Électronique et Systèmes embarqués",
       "school": "École Nationale d’Ingénieurs de Brest (ENIB), France",
       "period": "2022 - 2025",
-      "description": "Formation d'ingénieur spécialisée en électronique et systèmes embarqués."
+      "description": ""
     },
     {
       "title": "Technicien en Génie Électrique et Informatique Industrielle (GEII)",
       "school": "École Supérieure de Technologie - Meknès, Maroc",
       "period": "2020 - 2022",
-      "description": "Formation technologique en génie électrique et informatique industrielle."
+      "description": ""
     }
   ],
   "languages": [
@@ -70,8 +70,8 @@
     "Anglais : B2 - Linguaskill Business 179/180"
   ],
   "interests": [
-    "Robotique embarquée",
-    "Prototypage électronique",
-    "Veille systèmes embarqués"
+    "Football",
+    "Voyages",
+    "Projets de robotique DIY"
   ]
 }

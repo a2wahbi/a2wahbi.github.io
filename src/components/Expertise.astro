@@ -79,6 +79,12 @@ const expertiseSection = (expertiseFile.section ?? {}) as ExpertiseSection;
     .expertise-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .expertise-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: min(100%, calc((100% - 1.2rem) / 2));
+    }
   }
 
   .expertise-card {
@@ -117,6 +123,10 @@ const expertiseSection = (expertiseFile.section ?? {}) as ExpertiseSection;
     opacity: 1;
   }
 
+  .expertise-card:last-child {
+    text-align: center;
+  }
+
   .expertise-icon-wrap {
     position: relative;
     z-index: 1;
@@ -138,6 +148,11 @@ const expertiseSection = (expertiseFile.section ?? {}) as ExpertiseSection;
       border-color 0.32s ease;
   }
 
+  .expertise-card:last-child .expertise-icon-wrap {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .expertise-card:hover .expertise-icon-wrap {
     transform: translateY(-3px) rotate(-4deg);
     border-color: rgba(52, 211, 153, 0.38);
@@ -153,6 +168,12 @@ const expertiseSection = (expertiseFile.section ?? {}) as ExpertiseSection;
     position: relative;
     z-index: 1;
     padding: 1.25rem;
+  }
+
+  .expertise-card:last-child .expertise-copy {
+    max-width: 42rem;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .expertise-index {

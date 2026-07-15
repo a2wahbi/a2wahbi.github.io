@@ -28,12 +28,12 @@
   "signal": "",
   "blog": "",
   "cv": "/cv/CV_Francais.pdf",
-  "education": "Diplôme d’ingénieur - Électronique et Systèmes embarqués\nÉcole Nationale d’Ingénieurs de Brest (ENIB), France\n2022 - 2025\n\nTechnicien en Génie Électrique et Informatique Industrielle (GEII)\nÉcole Supérieure de Technologie - Meknès, Maroc\n2020 - 2022",
+  "education": "Diplôme d’ingénieur - Électronique et Systèmes embarqués\n\nTechnicien en Génie Électrique et Informatique Industrielle (GEII)",
   "yearsExperience": "2 ans d'expérience",
   "volunteer": "",
   "portfolioUrl": "",
   "heroRole": "Électronique & Systèmes Embarqués",
   "heroSocialLinks": ["github", "linkedin"],
-  "bio": "Diplômé de l’ENIB et actuellement ingénieur en électronique et systèmes embarqués en CDI, je suis également titulaire d’un diplôme de technicien spécialisé en Génie Électrique et Informatique Industrielle. Je dispose d’une solide expérience en conception électronique et en développement logiciel embarqué, acquise au cours de mon parcours professionnel et de plusieurs projets techniques réalisés. Curieux, rigoureux et motivé, j’aime évoluer dans des environnements techniques exigeants, apprendre en continu et partager mes connaissances avec les autres.",
-  "aboutLong": "Parcours centré sur la conception électronique, le firmware temps réel et l'intégration de systèmes embarqués. Expérience confirmée sur STM32H7, STM32F4, STM32F767, BGM240P, Raspberry Pi et Arduino, avec intégration SPI, I2C, UART, UDP, Modbus TCP, CAN et BLE GATT. Capable de relier besoin fonctionnel, architecture technique, réalisation PCB, développement bas niveau, IHM de supervision et validation terrain."
+  "bio": "Diplômé de l'ENIB et actuellement en CDI en tant qu'ingénieur en électronique et systèmes embarqués, je dispose d’une solide expérience en conception électronique et développement logiciel embarqué, acquise au cours de mon parcours professionnel et de plusieurs projets techniques réalisés. Curieux, motivé et mobile sur toute la France, je suis à l'écoute de nouvelles opportunités dans ce domaine à partir de septembre 2026.",
+  "aboutLong": "Diplômé de l'ENIB et actuellement en CDI en tant qu'ingénieur en électronique et systèmes embarqués, je dispose d’une solide expérience en conception électronique et développement logiciel embarqué, acquise au cours de mon parcours professionnel et de plusieurs projets techniques réalisés. Curieux, motivé et mobile sur toute la France, je suis à l'écoute de nouvelles opportunités dans ce domaine à partir de septembre 2026."
 }

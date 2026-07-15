@@ -6,12 +6,11 @@
   "categories": [
     {
       "title": "Langages",
-      "text": "Langages : C, C++, Python, VHDL.",
+      "text": "Langages : C, C++, Python.",
       "skills": [
         { "name": "C", "icon": "simple-icons:c" },
         { "name": "C++", "icon": "simple-icons:cplusplus" },
-        { "name": "Python", "icon": "simple-icons:python" },
-        { "name": "VHDL", "icon": "lucide:cpu" }
+        { "name": "Python", "icon": "simple-icons:python" }
       ]
     },
     {
@@ -27,9 +26,10 @@
     },
     {
       "title": "Électronique",
-      "text": "Électronique : conception de cartes, routage PCB, tests, validation, électronique analogique/numérique, capteurs/actionneurs.",
+      "text": "Électronique : conception de cartes, VHDL, routage PCB, tests, validation, électronique analogique/numérique, capteurs/actionneurs.",
       "skills": [
         { "name": "Conception de cartes électroniques", "icon": "lucide:circuit-board" },
+        { "name": "VHDL", "icon": "lucide:cpu" },
         { "name": "Routage PCB", "icon": "lucide:layers-3" },
         { "name": "Tests unitaires et fonctionnels", "icon": "lucide:test-tube" },
         { "name": "Validation cartes", "icon": "lucide:clipboard-check" },
@@ -39,7 +39,7 @@
     },
     {
       "title": "Protocoles",
-      "text": "Protocoles : UART, SPI, I2C, CAN, UDP, Modbus TCP/RTU, BLE GATT, MQTT, Wi-Fi.",
+      "text": "Protocoles : UART, SPI, I2C, CAN, UDP, Ethernet, Modbus TCP/RTU, BLE GATT, MQTT, Wi-Fi.",
       "skills": [
         { "name": "UART", "icon": "lucide:cable" },
         { "name": "SPI", "icon": "lucide:cable" },
@@ -49,6 +49,7 @@
         { "name": "BLE GATT", "icon": "simple-icons:bluetooth" },
         { "name": "MQTT", "icon": "lucide:network" },
         { "name": "UDP", "icon": "lucide:network" },
+        { "name": "Ethernet", "icon": "lucide:network" },
         { "name": "Wi-Fi", "icon": "lucide:network" }
       ]
     },
@@ -57,7 +58,6 @@
       "text": "Microcontrôleurs et plateformes : STM32H7/F4/F767, STM32 Nucleo, BGM240P, Raspberry Pi, Arduino, ESP32.",
       "skills": [
         { "name": "STM32H7 / STM32F4 / STM32F767", "icon": "lucide:microchip" },
-        { "name": "STM32 Nucleo F103/F411", "icon": "lucide:microchip" },
         { "name": "Silicon Labs BGM240P", "icon": "lucide:bluetooth" },
         { "name": "Raspberry Pi", "icon": "simple-icons:raspberrypi" },
         { "name": "Arduino", "icon": "simple-icons:arduino" },

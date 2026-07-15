@@ -1,15 +1,14 @@
 ---
 import personalData from '../data/personal.json';
 import siteData from '../data/site.json';
-import menuData from '../data/menu.json';
+import { withBase } from '../lib/assetPath';
 import { getSocialLinks } from '../lib/socialLinks';
 
 const currentYear = new Date().getFullYear();
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 const socialLinks = getSocialLinks(personalData as unknown as Record<string, string | string[]>);
-
-const navLinks = menuData.sections.map((s) => ({ label: s.label, href: s.href }));
+const cvHref = withBase(personalData.cv);
 
 const { footerAttribution } = siteData;
 ---
@@ -18,37 +17,36 @@ const { footerAttribution } = siteData;
   id="site-footer"
   style="position: relative; background: var(--footer-bg); border-top: 1px solid var(--footer-border);"
 >
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-14">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-10">
     <div class="footer-grid">
       <div class="footer-left">
-        <div class="footer-square" id="footer-square">
-          <div class="footer-scope" role="img" aria-label="Signal électronique animé">
-            <svg class="footer-scope-svg" viewBox="0 0 170 85" aria-hidden="true" focusable="false">
-              <path
-                class="scope-trace scope-trace-glow"
-                d="M8 44 H22 L27 31 L34 58 L41 44 H55 C62 44 62 27 70 27 C78 27 78 60 86 60 C94 60 94 44 102 44 H116 L121 35 L126 51 L132 44 H162"
-              />
-              <path
-                class="scope-trace scope-trace-main"
-                d="M8 44 H22 L27 31 L34 58 L41 44 H55 C62 44 62 27 70 27 C78 27 78 60 86 60 C94 60 94 44 102 44 H116 L121 35 L126 51 L132 44 H162"
-              />
-              <path
-                class="scope-noise"
-                d="M10 68 L15 65 L20 69 L26 66 L31 68 L37 64 L43 67 L50 66 L57 69 L64 65 L72 68 L80 66 L88 69 L96 65 L104 67 L112 66 L121 68 L130 65 L139 69 L148 66 L160 68"
-              />
-            </svg>
-            <span class="scope-sweep" aria-hidden="true"></span>
-            <span class="scope-dot scope-dot-a" aria-hidden="true"></span>
-            <span class="scope-dot scope-dot-b" aria-hidden="true"></span>
+        <div class="footer-brand-card">
+          <div class="footer-square" id="footer-square">
+            <div class="footer-scope" role="img" aria-label="Signal électronique animé">
+              <svg class="footer-scope-svg" viewBox="0 0 170 85" aria-hidden="true" focusable="false">
+                <path
+                  class="scope-trace scope-trace-glow"
+                  d="M8 44 H22 L27 31 L34 58 L41 44 H55 C62 44 62 27 70 27 C78 27 78 60 86 60 C94 60 94 44 102 44 H116 L121 35 L126 51 L132 44 H162"
+                />
+                <path
+                  class="scope-trace scope-trace-main"
+                  d="M8 44 H22 L27 31 L34 58 L41 44 H55 C62 44 62 27 70 27 C78 27 78 60 86 60 C94 60 94 44 102 44 H116 L121 35 L126 51 L132 44 H162"
+                />
+                <path
+                  class="scope-noise"
+                  d="M10 68 L15 65 L20 69 L26 66 L31 68 L37 64 L43 67 L50 66 L57 69 L64 65 L72 68 L80 66 L88 69 L96 65 L104 67 L112 66 L121 68 L130 65 L139 69 L148 66 L160 68"
+                />
+              </svg>
+              <span class="scope-sweep" aria-hidden="true"></span>
+              <span class="scope-dot scope-dot-a" aria-hidden="true"></span>
+              <span class="scope-dot scope-dot-b" aria-hidden="true"></span>
+            </div>
           </div>
-        </div>
 
-        <div class="mt-4">
-          <p class="text-lg font-bold gradient-text">{personalData.name}</p>
-          <p class="text-slate-500 text-xs mt-1 leading-relaxed max-w-[220px]">
-            {siteData.tagline}
-          </p>
-          <a href={`mailto:${personalData.email}`} class="footer-email mt-3">
+          <div class="footer-brand-copy">
+            <p class="footer-name gradient-text">{personalData.name}</p>
+            <p class="footer-tagline">{siteData.tagline}</p>
+            <p class="footer-email">
             <svg
               class="w-4 h-4 opacity-50 shrink-0"
               fill="none"
@@ -63,27 +61,66 @@ const { footerAttribution } = siteData;
               ></path>
             </svg>
             {personalData.email}
-          </a>
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="footer-center">
-        <nav class="flex flex-col gap-2" aria-label="Footer navigation">
-          {
-            navLinks.map((link) => (
-              <a href={link.href} class="footer-nav-link">
-                {link.label}
-              </a>
-            ))
-          }
-        </nav>
+        <aside class="footer-opportunity-card" aria-labelledby="footer-opportunity-title">
+          <div class="footer-opportunity-head">
+            <div>
+              <h2 id="footer-opportunity-title">Prêt pour un nouveau défi</h2>
+            </div>
+            <span class="footer-availability">Disponible dès sept. 2026</span>
+          </div>
+
+          <div class="footer-opportunity-facts">
+            <div class="footer-opportunity-fact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z" />
+                <circle cx="12" cy="10" r="2" stroke-width="1.8" />
+              </svg>
+              <div>
+                <span>Mobilité</span>
+                <strong>France entière</strong>
+              </div>
+            </div>
+
+            <div class="footer-opportunity-fact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <rect x="7" y="7" width="10" height="10" rx="2" stroke-width="1.8" />
+                <path stroke-linecap="round" stroke-width="1.8" d="M9 2v3m6-3v3M9 19v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3" />
+              </svg>
+              <div>
+                <span>Cœur de métier</span>
+                <strong>Électronique & logiciel embarqué</strong>
+              </div>
+            </div>
+
+            <div class="footer-opportunity-fact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <rect x="3" y="7" width="18" height="12" rx="2" stroke-width="1.8" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2" />
+              </svg>
+              <div>
+                <span>Type d’opportunité</span>
+                <strong>CDI</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-opportunity-bottom">
+            <a href={cvHref} target="_blank" rel="noopener noreferrer" class="footer-cv-link">
+              Consulter mon CV
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17 17 7M8 7h9v9" />
+              </svg>
+            </a>
+          </div>
+        </aside>
       </div>
 
-      <div class="footer-right">
-        <div class="flex flex-wrap gap-2">
-          {siteData.seoKeywords.map((kw) => <span class="footer-kw">{kw}</span>)}
-        </div>
-      </div>
     </div>
     <div class="footer-divider my-8"></div>
 
@@ -140,37 +177,238 @@ const { footerAttribution } = siteData;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    align-items: start;
+    align-items: stretch;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 900px) {
     .footer-grid {
-      grid-template-columns: auto 1fr auto;
-      gap: 3rem;
+      grid-template-columns: minmax(12rem, 0.68fr) minmax(0, 2.32fr);
+      gap: clamp(3rem, 7vw, 6rem);
     }
   }
 
   .footer-left {
     display: flex;
     flex-direction: column;
-  }
-  .footer-center {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .footer-right {
-    text-align: right;
+    align-items: flex-start;
+    min-height: 0;
   }
 
-  @media (max-width: 767px) {
-    .footer-center {
-      text-align: left;
-      align-items: flex-start;
-    }
-    .footer-right {
-      text-align: left;
-    }
+  .footer-brand-card {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .footer-brand-copy {
+    margin-top: 1rem;
+    min-width: 0;
+  }
+
+  .footer-name {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 850;
+    line-height: 1.15;
+  }
+
+  .footer-tagline {
+    margin-top: 0.38rem;
+    max-width: 14rem;
+    color: #64748b;
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .footer-center {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .footer-opportunity-card {
+    isolation: isolate;
+    position: relative;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    width: 100%;
+    max-width: 50rem;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    border-radius: 0.9rem;
+    background:
+      radial-gradient(circle at 95% 0%, rgba(14, 165, 233, 0.13), transparent 34%),
+      linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(2, 6, 23, 0.42));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 20px 50px rgba(2, 6, 23, 0.2);
+    padding: 1rem 1.25rem;
+  }
+
+  .footer-opportunity-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.32;
+    background-image:
+      linear-gradient(rgba(56, 189, 248, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56, 189, 248, 0.1) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: linear-gradient(90deg, transparent, black 54%, black);
+  }
+
+  .footer-opportunity-card::after {
+    content: '';
+    position: absolute;
+    right: -3.5rem;
+    top: -6rem;
+    z-index: -1;
+    width: 12rem;
+    height: 12rem;
+    border: 1px solid rgba(103, 232, 249, 0.14);
+    border-radius: 999px;
+    box-shadow:
+      0 0 0 2.5rem rgba(56, 189, 248, 0.018),
+      0 0 0 5rem rgba(99, 102, 241, 0.018);
+  }
+
+  .footer-opportunity-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .footer-opportunity-head h2 {
+    margin: 0;
+    color: #f1f5f9;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-availability {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    padding: 0.38rem 0.68rem;
+    border: 1px solid rgba(52, 211, 153, 0.22);
+    border-radius: 999px;
+    color: #a7f3d0;
+    background: rgba(16, 185, 129, 0.08);
+    font-size: 0.68rem;
+    font-weight: 750;
+    white-space: nowrap;
+  }
+
+  .footer-availability::before {
+    content: '';
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: #34d399;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1), 0 0 10px rgba(52, 211, 153, 0.5);
+  }
+
+  .footer-opportunity-facts {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 0.75rem;
+    width: 100%;
+    margin: 0.8rem 0 0.75rem;
+  }
+
+  .footer-opportunity-fact {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    min-height: 4.2rem;
+    padding: 0.68rem 0.8rem;
+    border: 1px solid rgba(148, 163, 184, 0.11);
+    border-radius: 0.65rem;
+    background: rgba(15, 23, 42, 0.38);
+  }
+
+  .footer-opportunity-fact svg {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.43rem;
+    border: 1px solid rgba(56, 189, 248, 0.16);
+    border-radius: 0.55rem;
+    color: #38bdf8;
+    background: rgba(14, 165, 233, 0.07);
+  }
+
+  .footer-opportunity-fact div {
+    min-width: 0;
+  }
+
+  .footer-opportunity-fact span,
+  .footer-opportunity-fact strong {
+    display: block;
+  }
+
+  .footer-opportunity-fact span {
+    margin-bottom: 0.14rem;
+    color: #64748b;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .footer-opportunity-fact strong {
+    color: #cbd5e1;
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .footer-opportunity-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 0.68rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .footer-cv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    color: #7dd3fc;
+    font-size: 0.72rem;
+    font-weight: 750;
+    white-space: nowrap;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .footer-cv-link svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    transition: transform 0.2s ease;
+  }
+
+  .footer-cv-link:hover {
+    color: #ffffff;
+  }
+
+  .footer-cv-link:hover svg {
+    transform: translate(0.12rem, -0.12rem);
+  }
+
+  .footer-cv-link:focus-visible {
+    border-radius: 0.2rem;
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
   }
 
   .footer-square {
@@ -426,31 +664,6 @@ const { footerAttribution } = siteData;
     }
   }
 
-  .footer-nav-link {
-    color: #64748b;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: color 0.2s ease;
-    position: relative;
-    display: inline-block;
-  }
-  .footer-nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: linear-gradient(90deg, #6366f1, #0ea5e9);
-    transition: width 0.3s ease;
-  }
-  .footer-nav-link:hover {
-    color: #a5b4fc;
-  }
-  .footer-nav-link:hover::after {
-    width: 100%;
-  }
-
   .footer-email {
     display: inline-flex;
     align-items: center;
@@ -458,29 +671,63 @@ const { footerAttribution } = siteData;
     color: #475569;
     font-size: 0.8rem;
     font-weight: 500;
-    transition: color 0.2s ease;
-  }
-  .footer-email:hover {
-    color: #a5b4fc;
+    margin-top: 0.7rem;
   }
 
-  .footer-kw {
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    color: #334155;
-    background: rgba(99, 102, 241, 0.04);
-    border: 1px solid rgba(99, 102, 241, 0.1);
-    border-radius: 9999px;
-    padding: 0.18rem 0.6rem;
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease;
-    cursor: default;
+  :global([data-theme='light']) .footer-opportunity-card {
+    border-color: rgba(14, 165, 233, 0.17);
+    background:
+      radial-gradient(circle at 95% 0%, rgba(14, 165, 233, 0.09), transparent 34%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(241, 245, 249, 0.72));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 18px 44px rgba(15, 23, 42, 0.06);
   }
-  .footer-kw:hover {
-    color: #6366f1;
-    border-color: rgba(99, 102, 241, 0.3);
+
+  :global([data-theme='light']) .footer-opportunity-head h2 {
+    color: #1e293b;
+  }
+
+  :global([data-theme='light']) .footer-opportunity-fact {
+    border-color: rgba(99, 102, 241, 0.1);
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  :global([data-theme='light']) .footer-opportunity-fact strong {
+    color: #334155;
+  }
+
+  :global([data-theme='light']) .footer-cv-link:hover {
+    color: #0369a1;
+  }
+
+  @media (max-width: 899px) {
+    .footer-center {
+      justify-content: flex-start;
+    }
+
+    .footer-opportunity-card {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .footer-opportunity-head,
+    .footer-opportunity-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .footer-opportunity-facts {
+      grid-auto-columns: auto;
+      grid-auto-flow: row;
+      grid-template-columns: 1fr;
+    }
+
+    .footer-opportunity-fact strong {
+      overflow: visible;
+      text-overflow: clip;
+    }
   }
 
   .footer-divider {

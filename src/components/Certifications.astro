@@ -1,5 +1,6 @@
 ---
 import certificationsData from '../data/certifications.json';
+import { withBase } from '../lib/assetPath';
 
 type CertType = 'certification' | 'professional-development' | 'in-progress';
 
@@ -82,10 +83,62 @@ const certTypes = new Set(certificationsData.map((cert) => cert.type ?? 'certifi
 
                 <p class="text-slate-400 text-sm leading-relaxed">{cert.description}</p>
 
-                <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-white/5">
                   <span class="text-xs text-slate-600 font-mono">{cert.date}</span>
 
-                  {type === 'in-progress' ? (
+                  {cert.certificateUrl ? (
+                    <div class="cert-actions">
+                      <a
+                        href={withBase(cert.certificateUrl)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class={`cert-action-link ${type === 'professional-development' ? 'cert-action-pro' : 'cert-action-earned'}`}
+                      >
+                        <span>Visualiser</span>
+                        <svg
+                          class="w-3.5 h-3.5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12 18 18.75 12 18.75 2.25 12 2.25 12Z"
+                          />
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 15.25a3.25 3.25 0 100-6.5 3.25 3.25 0 000 6.5Z"
+                          />
+                        </svg>
+                      </a>
+                      <a
+                        href={withBase(cert.certificateUrl)}
+                        download
+                        class={`cert-action-link ${type === 'professional-development' ? 'cert-action-pro' : 'cert-action-earned'}`}
+                      >
+                        <span>Télécharger</span>
+                        <svg
+                          class="w-3.5 h-3.5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 3v12m0 0l4-4m-4 4l-4-4M5 21h14"
+                          />
+                        </svg>
+                      </a>
+                    </div>
+                  ) : type === 'in-progress' ? (
                     <span class="in-progress-label">
                       <span class="ip-pulse" />
                       Mise à jour prévue
@@ -236,6 +289,59 @@ const certTypes = new Set(certificationsData.map((cert) => cert.type ?? 'certifi
     border: 1px solid rgba(245, 158, 11, 0.2);
     color: #fbbf24;
     vertical-align: middle;
+  }
+
+  .cert-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.45rem;
+  }
+
+  .cert-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    min-height: 2rem;
+    padding: 0.42rem 0.62rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .cert-action-link:hover {
+    transform: translateY(-1px);
+  }
+
+  .cert-action-earned {
+    color: #6ee7b7;
+    border-color: rgba(16, 185, 129, 0.28);
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  .cert-action-earned:hover {
+    color: #a7f3d0;
+    background: rgba(16, 185, 129, 0.14);
+    box-shadow: 0 8px 22px rgba(16, 185, 129, 0.1);
+  }
+
+  .cert-action-pro {
+    color: #fcd34d;
+    border-color: rgba(245, 158, 11, 0.28);
+    background: rgba(245, 158, 11, 0.08);
+  }
+
+  .cert-action-pro:hover {
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.14);
+    box-shadow: 0 8px 22px rgba(245, 158, 11, 0.1);
   }
 
   .cert-pro-dev {

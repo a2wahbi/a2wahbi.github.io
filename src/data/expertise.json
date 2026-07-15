@@ -14,7 +14,7 @@
       "key": "realtime-firmware",
       "icon": "code-bracket-square",
       "title": "Développement firmware temps réel",
-      "description": "Développement C/C++ sur STM32 et ARM Cortex-M, avec FreeRTOS, gestion multitâche, drivers, interruptions, périphériques et comportement déterministe."
+      "description": "Développement de firmwares C/C++ multi-architectures. Maîtrise des environnements Bare-metal et systèmes d'exploitation temps réel (RTOS / OS Embarqués). Conception d'architectures bas niveau (BSP, HAL), développement de drivers et garantie d'un comportement déterministe sous contraintes."
     },
     {
       "key": "electronics-integration",
@@ -26,7 +26,7 @@
       "key": "industrial-connectivity",
       "icon": "signal",
       "title": "Connectivité et protocoles industriels",
-      "description": "Intégration UART, SPI, I2C, CAN, UDP, Modbus TCP/RTU, BLE GATT, MQTT et Wi-Fi pour échanges robustes entre capteurs, microcontrôleurs et IHM."
+      "description": "Intégration UART, SPI, I2C, CAN, UDP, Ethernet, Modbus TCP/RTU, BLE GATT, MQTT et Wi-Fi pour échanges robustes entre capteurs, microcontrôleurs et IHM."
     },
     {
       "key": "embedded-ai-robotics",

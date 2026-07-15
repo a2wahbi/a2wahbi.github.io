@@ -6,7 +6,8 @@
     "status": "Obtenue",
     "type": "certification",
     "description": "Certification d'anglais professionnel selon le CECRL. Score global : 179/180, niveau B2, avec compréhension orale C1 ou supérieur.",
-    "credentialUrl": ""
+    "credentialUrl": "",
+    "certificateUrl": "/certificates/linguaskill-business.pdf"
   },
   {
     "name": "Développez en C pour l'embarqué",
@@ -15,7 +16,8 @@
     "status": "Validée",
     "type": "professional-development",
     "description": "Formation centrée sur le développement C appliqué aux systèmes embarqués : structuration du code, manipulation de données et programmation proche matériel.",
-    "credentialUrl": ""
+    "credentialUrl": "",
+    "certificateUrl": "/certificates/c-embarque.pdf"
   },
   {
     "name": "Apprenez à programmer en C++",
@@ -24,6 +26,7 @@
     "status": "Validée",
     "type": "professional-development",
     "description": "Formation sur les fondamentaux C++, la syntaxe, la programmation orientée objet, la structuration du code et les bonnes pratiques de développement.",
-    "credentialUrl": ""
+    "credentialUrl": "",
+    "certificateUrl": "/certificates/cpp-openclassrooms.pdf"
   }
 ]

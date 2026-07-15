@@ -16,6 +16,7 @@
   "seoKeywords": [
     "Ingénieur Électronique et Systèmes Embarqués",
     "Conception électronique",
+    "VHDL",
     "Développement logiciel embarqué",
     "Firmware temps réel",
     "Robotique autonome",
@@ -27,7 +28,6 @@
     "C",
     "C++",
     "Python",
-    "VHDL",
     "Embedded Linux",
     "multicœurs ARM",
     "FreeRTOS",
@@ -78,16 +78,16 @@
       "urlTemplate": "https://linkedin.com/in/{value}"
     },
     {
-      "label": "E-mail",
-      "desc": "Contact direct pour projet ou opportunité",
+      "label": "wahbiahmedamine@gmail.com",
+      "desc": "E-mail",
       "personalKey": "email",
-      "urlTemplate": "mailto:{value}"
+      "urlTemplate": "#contact"
     },
     {
-      "label": "Téléphone",
-      "desc": "Disponible sur rendez-vous",
-      "personalKey": "phoneTel",
-      "urlTemplate": "{value}"
+      "label": "+33 7.45.41.23.85",
+      "desc": "Téléphone",
+      "personalKey": "phone",
+      "urlTemplate": "#contact"
     }
   ],
   "serviceSites": [
